@@ -1,7 +1,7 @@
 # contents:
 
-- [tokenizer](https://github.com/kkasra12/NLP/00-Tokenizer)
-- [Calculating TF-IDF](https://github.com/kkasra12/NLP/01-TF_IDF)
+- [tokenizer](https://github.com/kkasra12/NLP/tree/master/00-Tokenizer)
+- [Calculating TF-IDF](https://github.com/kkasra12/NLP/tree/master/01-TF_IDF)
 
 
 **Kasra ESkandari**<br>
