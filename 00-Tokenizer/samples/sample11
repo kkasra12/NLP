@@ -1,0 +1,115 @@
+فراوانی وزنی تی‌اف-آی‌دی‌اف (به انگلیسی: tf–idf weight) مخّففِ term frequency - inverse document frequency یا فراوانی کلمه - معکوس فراوانی متن است.[۱] در این شیوه به هر کلمه‌ای در هر متن یک‌وزن بر اساس فراوانی آن در متن و فراوانی کلمه در سایر متونِ پیکره متنی داده می‌شود.[۲] در واقع هدف این سیستمِ وزن‌دهی، نشان‌دادن اهمیت کلمه در متن است. این مسئله کاربردهای بسیاری در بازیابی اطلاعات و متن کاوی دارد. وزن کلمه با افزایش تعداد تکرار آن در متن افزایش می‌یابد، اما توسط تعداد متونی که کلمه در آن ظاهر می‌شود کنترل می‌شود. به این معنی که اگر کلمه‌ای در بسیاری از متون ظاهر شود احتمالا کلمه‌ای متداول است و ارزش چندانی در ارزیابی متن ندارد.[۲] امروزه بیش از ۸۳ درصد از سامانه‌های توصیه‌گر در کتابخانه‌های دیجیتال از این روش وزن‌دهی کلمات استفاده می‌کنند.[۱]
+محتویات
+
+    ۱ تعریف ریاضی
+        ۱.۱ تابع فراوانی کلمه (tf یا Term Frequency)
+        ۱.۲ تابع معکوس فراوانی متن (idf یا Inverse document frequency)
+        ۱.۳ فراوانی وزنی نهائی (tf-idf)
+    ۲ مثال
+    ۳ جستارهای وابسته
+    ۴ منابع
+
+تعریف ریاضی
+
+وزن کلمه t {\displaystyle t} {\displaystyle t} در متن d {\displaystyle d} {\displaystyle d} برابر است با حاصلضرب تابع فراوانی کلمه یعنی t f {\displaystyle tf} {\displaystyle tf} و تابع معکوس فراوانی یعنی i d f {\displaystyle idf} {\displaystyle idf} که در پایین تعریف شده‌اند.[۳]
+تابع فراوانی کلمه (tf یا Term Frequency)
+
+اگر فرض کنیم f t , d {\displaystyle f_{t,d}} {\displaystyle f_{t,d}}تکرار تعداد دفعاتی باشد که کلمه t {\displaystyle t} {\displaystyle t} در متن d {\displaystyle d} {\displaystyle d} اتفاق افتاده است، تابع فراوانی کلمه یا t f ( t , d ) {\displaystyle tf(t,d)} {\displaystyle tf(t,d)} به چند طریق می‌تواند تعریف شود[۳]:
+
+    فراوانی خام:
+        t f ( t , d ) = f t , d {\displaystyle tf(t,d)=f_{t,d}} {\displaystyle tf(t,d)=f_{t,d}}
+    فراوانی خامِ نرمال‌سازی شده:‌
+        t f ( t , d ) = f t , d ∑ s ∈ d f s , d {\displaystyle tf(t,d)={\frac {f_{t,d}}{\sum _{s\in d}f_{s,d}}}} {\displaystyle tf(t,d)={\frac {f_{t,d}}{\sum _{s\in d}f_{s,d}}}}
+    فراوانی بولی:
+        t f ( t , d ) = 1 ( f t , d > 0 ) {\displaystyle tf(t,d)=1\left(f_{t,d}>0\right)} {\displaystyle tf(t,d)=1\left(f_{t,d}>0\right)}
+        اگر کلمه f t , d {\displaystyle f_{t,d}} {\displaystyle f_{t,d}}برزگتر از صفر باشد t f ( t , d ) {\displaystyle tf(t,d)} {\displaystyle tf(t,d)}یک است و در غیر این صورت صفر.
+    فراوانی لگاریتمی:
+        t f ( t , d ) = log ⁡ ( f t , d + 1 ) {\displaystyle tf(t,d)=\log(f_{t,d}+1)} {\displaystyle tf(t,d)=\log(f_{t,d}+1)}
+    فراوانی تکمیل شده:
+        t f ( t , d ) = 0.5 + 0.5 ⋅ f t , d max { f t ′ , d : t ′ ∈ d } {\displaystyle tf(t,d)=0.5+0.5\cdot {\frac {f_{t,d}}{\max\{f_{t',d}:t'\in d\}}}} {\displaystyle tf(t,d)=0.5+0.5\cdot {\frac {f_{t,d}}{\max\{f_{t',d}:t'\in d\}}}}
+        این تابع برای برای جلوگیری از تمایل به سمت متون بزرگتر مورد استفاده قرار می‌گیرید، یعنی به دلیل حجم بالاتر متن نسبت به سایر متون ممکن است کلمه مورد نظر بیشتر تکرار شده باشد ولی این به دلیل فراوانی بیشتر کلمه در متن بزرگتر نیست. این مورد بیشتر در موتور جستجو برای بازیابی مستندات با کلمات مورد جستجو کاربرد دارد.
+
+این موارد را می‌توان در جدول پایین به صورت خلاصه نمایش داد:
+
+
+Variants of term frequency (tf) weight weighting scheme 	tf weight
+binary 	0 , 1 {\displaystyle {0,1}} {\displaystyle {0,1}}
+raw count 	f t , d {\displaystyle f_{t,d}} {\displaystyle f_{t,d}}
+term frequency 	f t , d / ∑ t ′ ∈ d f t ′ , d {\displaystyle f_{t,d}{\Bigg /}{\sum _{t'\in d}{f_{t',d}}}} {\displaystyle f_{t,d}{\Bigg /}{\sum _{t'\in d}{f_{t',d}}}}
+log normalization 	log ⁡ ( 1 + f t , d ) {\displaystyle \log(1+f_{t,d})} {\displaystyle \log(1+f_{t,d})}
+double normalization 0.5 	0.5 + 0.5 ⋅ f t , d max { t ′ ∈ d } f t ′ , d {\displaystyle 0.5+0.5\cdot {\frac {f_{t,d}}{\max _{\{t'\in d\}}{f_{t',d}}}}} {\displaystyle 0.5+0.5\cdot {\frac {f_{t,d}}{\max _{\{t'\in d\}}{f_{t',d}}}}}
+double normalization K 	K + ( 1 − K ) f t , d max { t ′ ∈ d } f t ′ , d {\displaystyle K+(1-K){\frac {f_{t,d}}{\max _{\{t'\in d\}}{f_{t',d}}}}} {\displaystyle K+(1-K){\frac {f_{t,d}}{\max _{\{t'\in d\}}{f_{t',d}}}}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+تابع معکوس فراوانی متن (idf یا Inverse document frequency)
+
+idf: معیاری است برای میزان کلماتی که در پیکره متنی متداول هستند و معمولاً تکرار می‌شوند.[۴] طریقه بدست آوردن این معیار بدین صورت است که از لگاریتمِ تقسیم تعداد کل متون در پیکره متنی بر تعداد متونی که شامل کلمه متداول استفاده می‌کنیم. به زبان ریاضی این تابع را با i d f ( t , D ) = log ⁡ N / | { d ∈ D : t ∈ d } | {\displaystyle idf(t,D)=\log {N}/{|\{d\in D:t\in d\}|}} {\displaystyle idf(t,D)=\log {N}/{|\{d\in D:t\in d\}|}} نشان می‌دهیم. در اینجا N = | D | {\displaystyle N={|D|}} {\displaystyle N={|D|}}یعنی تعداد کل متنها در پیکره متنی و | { d ∈ D : t ∈ d } | {\displaystyle |\{d\in D:t\in d\}|} {\displaystyle |\{d\in D:t\in d\}|} تعداد متن‌هایی را نمایش می‌دهد که کلمه t {\displaystyle t} t در آن ظاهر شده است. برای مثال: فرض کنیم در پیکره متنی ما هزار متن وجود داشته باشد. اگر در تمام این هزار متن یک کلمه خاص (مثلاً کلمه «است») وجود داشته باشد حاصل لگاریتم هزار تقسیم بر هزار می‌شود صفر. یعنی حتماً این کلمه جزوِ کلمات متداول بوده و باید ضریب صفر بگیرد ولی اگر تکرار در صد متن اتفاق افتاده باشد جواب می‌شود لگاریتم ده که حاصل آن یک است، پس ضریب یک می‌گیرد.[۵] هر چقدر متونی که کلمه در آن تکرار شده باشد بیشتر باشد وزن i d f {\displaystyle idf} {\displaystyle idf} کوچکتر می‌شود؛ البته چون ممکن است کلمه‌ای اصلاً در هیچ متنی تکرار نشده باشد و مخرج صفر شود مخرج را معمولاً با یک جمع می‌کنیم. البته تابع معکوس فراوانی می‌تواند فرم‌های متفاوتی بگیرد که چند نمونه از آن در جدول پایین نمایش داده شده است.[۴]
+
+
+Variants of inverse document frequency (idf) weight weighting scheme 	idf weight ( n t = | { d ∈ D : t ∈ d } | {\displaystyle n_{t}=|\{d\in D:t\in d\}|} {\displaystyle n_{t}=|\{d\in D:t\in d\}|})
+unary 	1
+inverse document frequency 	log ⁡ N n t = − log ⁡ n t N {\displaystyle \log {\frac {N}{n_{t}}}=-\log {\frac {n_{t}}{N}}} {\displaystyle \log {\frac {N}{n_{t}}}=-\log {\frac {n_{t}}{N}}}
+inverse document frequency smooth 	log ⁡ ( 1 + N n t ) {\displaystyle \log \left(1+{\frac {N}{n_{t}}}\right)} {\displaystyle \log \left(1+{\frac {N}{n_{t}}}\right)}
+inverse document frequency max 	log ⁡ ( max { t ′ ∈ d } n t ′ 1 + n t ) {\displaystyle \log \left({\frac {\max _{\{t'\in d\}}n_{t'}}{1+n_{t}}}\right)} {\displaystyle \log \left({\frac {\max _{\{t'\in d\}}n_{t'}}{1+n_{t}}}\right)}
+probabilistic inverse document frequency 	log ⁡ N − n t n t {\displaystyle \log {\frac {N-n_{t}}{n_{t}}}} {\displaystyle \log {\frac {N-n_{t}}{n_{t}}}}
+
+
+
+
+
+
+
+
+
+
+
+فراوانی وزنی نهائی (tf-idf)
+
+فراوانی وزنی تی‌اف-آی‌دی‌اف که وزن نهایی کلمات در متون است از ضرب تابع فراوانی کلمه یعنی t f {\displaystyle tf} {\displaystyle tf} و تابع معکوس فراوانی یعنی i d f {\displaystyle idf} {\displaystyle idf} بدست می‌آید.[۳] چند نمونه از این توابع در جدول پائین لیست شده‌است.
+Recommended tf–idf weighting schemes weighting scheme 	document term weight 	query term weight
+1 	f t , d ⋅ log ⁡ N n t {\displaystyle f_{t,d}\cdot \log {\frac {N}{n_{t}}}} {\displaystyle f_{t,d}\cdot \log {\frac {N}{n_{t}}}} 	( 0.5 + 0.5 f t , q max t f t , q ) ⋅ log ⁡ N n t {\displaystyle \left(0.5+0.5{\frac {f_{t,q}}{\max _{t}f_{t,q}}}\right)\cdot \log {\frac {N}{n_{t}}}} {\displaystyle \left(0.5+0.5{\frac {f_{t,q}}{\max _{t}f_{t,q}}}\right)\cdot \log {\frac {N}{n_{t}}}}
+2 	1 + log ⁡ f t , d {\displaystyle 1+\log f_{t,d}} {\displaystyle 1+\log f_{t,d}} 	log ⁡ ( 1 + N n t ) {\displaystyle \log \left(1+{\frac {N}{n_{t}}}\right)} {\displaystyle \log \left(1+{\frac {N}{n_{t}}}\right)}
+3 	( 1 + log ⁡ f t , d ) ⋅ log ⁡ N n t {\displaystyle (1+\log f_{t,d})\cdot \log {\frac {N}{n_{t}}}} {\displaystyle (1+\log f_{t,d})\cdot \log {\frac {N}{n_{t}}}} 	( 1 + log ⁡ f t , q ) ⋅ log ⁡ N n t {\displaystyle (1+\log f_{t,q})\cdot \log {\frac {N}{n_{t}}}} {\displaystyle (1+\log f_{t,q})\cdot \log {\frac {N}{n_{t}}}}
+
+
+مثال
+
+فرض کنیم D {\displaystyle D} {\displaystyle D} پیکره متنی ما باشد و فقط دو متن داشته باشد به این شکل: D = { d 1 = ′ t h i s i s m y m a i n s a m p l e ′ , d 2 = ′ p r e v i o u s e l e c t i o n r e s u l t s a r e d i f f e r e n t f r o m t h i s e l e c t i o n a n d l a s t e l e c t i o n ′ } {\displaystyle D=\{d_{1}={\mathsf {'this\,\,is\,\,my\,\,main\,\,sample'}},\,\,d_{2}={\mathsf {'previous\,\,election\,\,results\,\,are\,\,different\,\,from\,\,this\,\,election\,\,and\,\,last\,\,election'}}\}} {\displaystyle D=\{d_{1}={\mathsf {'this\,\,is\,\,my\,\,main\,\,sample'}},\,\,d_{2}={\mathsf {'previous\,\,election\,\,results\,\,are\,\,different\,\,from\,\,this\,\,election\,\,and\,\,last\,\,election'}}\}}
+
+ابتدا تابع فراوانی کلمه t h i s {\displaystyle {\mathsf {this}}} {\displaystyle {\mathsf {this}}} را در هر دو متن حساب میکنیم:‌
+
+    t f ( t h i s , d 1 ) = 1 5 = 0.2 {\displaystyle \mathrm {tf} ({\mathsf {this}},d_{1})={\frac {1}{5}}=0.2} {\displaystyle \mathrm {tf} ({\mathsf {this}},d_{1})={\frac {1}{5}}=0.2}
+    t f ( t h i s , d 2 ) = 1 11 ≈ 0.091 {\displaystyle \mathrm {tf} ({\mathsf {this}},d_{2})={\frac {1}{11}}\approx 0.091} {\displaystyle \mathrm {tf} ({\mathsf {this}},d_{2})={\frac {1}{11}}\approx 0.091}
+
+سپس تابع معکوس فراوانی این کلمه را برای پیکره متنی D {\displaystyle D} {\displaystyle D} محاسبه می‌کنیم، جواب صفر میشود:
+
+    i d f ( t h i s , D ) = log ⁡ ( 2 2 ) = 0 {\displaystyle \mathrm {idf} ({\mathsf {this}},D)=\log \left({\frac {2}{2}}\right)=0} {\displaystyle \mathrm {idf} ({\mathsf {this}},D)=\log \left({\frac {2}{2}}\right)=0}
+
+فراوانی نهایی که حاصلضرب دو تابع اخیر است، برای هر دو متن صفر می‌شود:
+
+    t f i d f ( t h i s , d 1 , D ) = 0.2 × 0 = 0 {\displaystyle \mathrm {tfidf} ({\mathsf {this}},d_{1},D)=0.2\times 0=0} {\displaystyle \mathrm {tfidf} ({\mathsf {this}},d_{1},D)=0.2\times 0=0}
+    t f i d f ( t h i s , d 2 , D ) = 0.091 × 0 = 0 {\displaystyle \mathrm {tfidf} ({\mathsf {this}},d_{2},D)=0.091\times 0=0} {\displaystyle \mathrm {tfidf} ({\mathsf {this}},d_{2},D)=0.091\times 0=0}
+
+کلمه e l e c t i o n {\displaystyle {\mathsf {election}}} {\displaystyle {\mathsf {election}}} را هم به همان شکل حساب میکنیم:
+
+    t f ( e l e c t i o n , d 1 ) = 0 5 = 0 {\displaystyle \mathrm {tf} ({\mathsf {election}},d_{1})={\frac {0}{5}}=0} {\displaystyle \mathrm {tf} ({\mathsf {election}},d_{1})={\frac {0}{5}}=0}
+    t f ( e l e c t i o n , d 2 ) = 3 11 ≈ 0.273 {\displaystyle \mathrm {tf} ({\mathsf {election}},d_{2})={\frac {3}{11}}\approx 0.273} {\displaystyle \mathrm {tf} ({\mathsf {election}},d_{2})={\frac {3}{11}}\approx 0.273}
+    i d f ( e l e c t i o n , D ) = log ⁡ ( 2 1 ) = 0.301 {\displaystyle \mathrm {idf} ({\mathsf {election}},D)=\log \left({\frac {2}{1}}\right)=0.301} {\displaystyle \mathrm {idf} ({\mathsf {election}},D)=\log \left({\frac {2}{1}}\right)=0.301}
+
+جواب نهائی برای کلمه e l e c t i o n {\displaystyle {\mathsf {election}}} {\displaystyle {\mathsf {election}}} در دو متن برابر خواهد بود با:‌
+
+    t f i d f ( e l e c t i o n , d 1 , D ) = t f ( e l e c t i o n , d 1 ) × i d f ( e l e c t i o n , D ) = 0 × 0.301 = 0 {\displaystyle \mathrm {tfidf} ({\mathsf {election}},d_{1},D)=\mathrm {tf} ({\mathsf {election}},d_{1})\times \mathrm {idf} ({\mathsf {election}},D)=0\times 0.301=0} {\displaystyle \mathrm {tfidf} ({\mathsf {election}},d_{1},D)=\mathrm {tf} ({\mathsf {election}},d_{1})\times \mathrm {idf} ({\mathsf {election}},D)=0\times 0.301=0}
+    t f i d f ( e l e c t i o n , d 2 , D ) = t f ( e l e c t i o n , d 2 ) × i d f ( e l e c t i o n , D ) = 0.273 × 0.301 ≈ 0.083 {\displaystyle \mathrm {tfidf} ({\mathsf {election}},d_{2},D)=\mathrm {tf} ({\mathsf {election}},d_{2})\times \mathrm {idf} ({\mathsf {election}},D)=0.273\times 0.301\approx 0.083} {\displaystyle \mathrm {tfidf} ({\mathsf {election}},d_{2},D)=\mathrm {tf} ({\mathsf {election}},d_{2})\times \mathrm {idf} ({\mathsf {election}},D)=0.273\times 0.301\approx 0.083}
+
+در متن اول که کلمه وجود ندارد جواب صفر است ولی در متن دوم جواب صفر نیست که نشان می‌دهد کلمه e l e c t i o n {\displaystyle {\mathsf {election}}} {\displaystyle {\mathsf {election}}} در متن دوم کلمه‌ای پر اهمیت است. 

@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
+</head>
+<body>
+<p><strong>NAME:</strong> Kasra Eskandari <strong style="margin-left:10vw;">STD ID:</strong> 955361005</p>
+<h1 id="first-exercise---word-tokenizer">First Exercise - Word Tokenizer</h1>
+<p>Word tokenization is the process of splitting a large sample of text into words. This is a requirement in natural language processing tasks where each word needs to be captured and subjected to further analysis like classifying and counting them for a particular sentiment etc. To achieve this goal we have implemented a class named <code>Token</code> and we will assign each token to one instance of this class.</p>
+<h2 id="overall-approach">Overall Approach</h2>
+<p>If we use space character to separate words we may face many problems, as a solid example, punctuation marks which has no space with words, or numbers may have no space with dots(in IP addresses for-example). To avoid this problems we have defined some <em>regex</em> in <code>tokens.tokensMap</code> in which each token name has mapped to its specific regex. And <code>wordTokenizer.wordTokenizer</code> function will search the text in <code>sampleText</code> file for longest occurrence of this regex. several major programming problems which we have faced are listed below:</p>
+<ul>
+<li>we couldn't use recursive approach because recursion depth causes number of limitations, this problem paves the way for using a simple <em>loop</em></li>
+<li>As searching the whole text for all of the regexes in each step(using <em>backTracking</em> method) waste plenty of time, the program searches for each tokens between two spaces.</li>
+</ul>
+<p>Below you can see the regexes for which we are searching:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">persianLetters<span class="op">=</span><span class="st">&quot;ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیأإآيئؤكٓه&quot;</span><span class="op">+</span><span class="st">&quot;</span><span class="ch">\u200c\u200d\u200e</span><span class="st">&quot;</span><span class="op">+</span><span class="st">&quot;ة&quot;</span>
+<span class="co"># ZERO WIDTH NON-JOINER (U+200C)</span>
+<span class="co"># ZERO WIDTH JOINER (U+200D)</span>
+<span class="co"># LEFT-TO-RIGHT MARK (U+200E)</span>
+persionSounds<span class="op">=</span><span class="st">&quot;&quot;</span>.join(<span class="bu">chr</span>(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1611</span>,<span class="dv">1632</span>))<span class="op">+</span><span class="st">&quot;ء&quot;</span>
+extensions<span class="op">=</span><span class="bu">open</span>(<span class="st">&quot;extensions&quot;</span>).read().split(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)[:<span class="op">-</span><span class="dv">1</span>]
+dummyPunctuations<span class="op">=</span><span class="st">&quot;</span><span class="ch">\u22c5\u2032\u2212\u2013\u061b\u061f\u2061</span><span class="st">&quot;</span>
+dummyPunctuations<span class="op">+=</span><span class="st">&quot;؛؟&quot;</span> <span class="co"># these are persian pronunciations</span>
+dummyPunctuations<span class="op">+=</span><span class="st">&quot;</span><span class="sc">{}</span><span class="st">…&quot;</span>
+tokensMap<span class="op">=</span>{<span class="st">&quot;PUNCTUATION&quot;</span>        :<span class="vs">rf&#39;[!&quot;#$%&amp;\&#39;()*+,\-./:;≈❗️,«»&lt;=&gt;?@\[\\\]\^_`|~،”“.×</span><span class="sc">{</span>dummyPunctuations<span class="sc">}</span><span class="vs">]&#39;</span>,
+           <span class="st">&quot;EMOJI&quot;</span>              :<span class="st">&quot;[&quot;</span><span class="op">+</span><span class="bu">open</span>(<span class="st">&quot;emojies&quot;</span>).read().replace(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,<span class="st">&quot;&quot;</span>)<span class="op">+</span><span class="st">&quot;]&quot;</span>,
+           <span class="st">&quot;IP&quot;</span>                 :<span class="vs">r&quot;\d\.\d\.\d\.\d&quot;</span>,
+           <span class="st">&quot;NUMBER&quot;</span>             :<span class="vs">r&quot;(?:\d+(?:٫\d+)?)|(?:\d+(?:\.\d+)?)&quot;</span>,
+           <span class="st">&quot;UNSTRUCTURED_NUMBER&quot;</span>:<span class="vs">r&quot;[\d٫]+|[\d\.]+&quot;</span>,
+           <span class="st">&quot;PERSIAN_WORD&quot;</span>       :<span class="ss">f&quot;[</span><span class="sc">{</span>persianLetters<span class="sc">}</span><span class="ss">][</span><span class="sc">{</span>persianLetters<span class="sc">}{</span>persionSounds<span class="sc">}</span><span class="ss">]*[</span><span class="sc">{</span>persianLetters<span class="sc">}</span><span class="ss">]?&quot;</span>,
+           <span class="st">&quot;ENGLISH_WORD&quot;</span>       :<span class="vs">r&quot;[A-Za-z]+&quot;</span>,
+           <span class="st">&quot;ENGLISH_HUMAN_NAME&quot;</span> :<span class="vs">r&quot;(?:(?i)mr|mis|miss)\.[A-Za-z][a-z]+&quot;</span>,
+           <span class="st">&quot;FILE_NAME&quot;</span>          :<span class="vs">rf&quot;(?i)[a-z0-9\._\-()!@#$%^&amp;]+\.(?:</span><span class="sc">{</span><span class="st">&#39;|&#39;</span><span class="sc">.</span>join(extensions)<span class="sc">}</span><span class="vs">)&quot;</span>,
+           <span class="st">&quot;LINK&quot;</span>               :<span class="vs small-code">r&quot;(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z][a-zA-Z0-9()]{0,6}\b([-a-zA-Z0-9()@:%_\+.~#?&amp;\/\/=,]*)&quot;</span>,
+           <span class="st">&quot;EMAIL&quot;</span>              :<span class="vs small-code">r&quot;[a-zA-Z0-9.!#$%&amp;&#39;*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]+[a-zA-Z0-9])?\.[a-zA-Z0-9](?:[a-zA-Z0-9-]+[a-zA-Z0-9])?&quot;</span>,
+           <span class="st">&quot;GREEL_LETTERS&quot;</span>      :<span class="st">&quot;[ΑαΒβΓγŋΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσΤτΥυΦφΧχΨψΩω∑∈]&quot;</span>,
+           <span class="st">&quot;DEGREE&quot;</span>             :<span class="vs">r&quot;(\d+°C)|(\d+°F)&quot;</span>,
+           <span class="st">&quot;NEW_LINE&quot;</span>           :<span class="vs">r&quot;\n&quot;</span>,
+           <span class="st">&quot;SPACE&quot;</span>              :<span class="st">&quot; &quot;</span>,
+           <span class="st">&quot;TAB&quot;</span>                :<span class="vs">r&quot;\t&quot;</span>
+        }</code></pre></div>
+<p>Also there is some tips, we should concern about:</p>
+<ul>
+<li>Sounds between words should not break the letter and should not make new letter either.For instance the word &quot;سلام&quot; and &quot;سَلام&quot; are same word and both are single word.<br />
+to solve these problems, first of all <code>PERSIAN_WORD</code> regex accepts Persian sounds only in the middle of word, Also we omit all persianSounds before saving each token.</li>
+<li>There is a letter 'ء' in Persian (I'm not sure if it is a letter) that was common in old texts, but nowadays this letter is omitted. This letter is added into <code>persianSounds</code>.</li>
+<li>There is two kind of <strong>ZERO WIDTH SPACE</strong>(standard and non-standard keyboard)</li>
+<li>There is a <strong>LEFT-TO-RIGHT MARK</strong> which is frequently used in persian texts.</li>
+<li>Vast types of tokens are supported(approximately vast!!!)</li>
+</ul>
+<h2 id="execution">Execution</h2>
+<p>The <code>wordTokenizer.wordTokenizer</code> function will return a list containing all of the tokens in same order as the text.This part of code will calculate this exercise goal:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">text<span class="op">=</span><span class="bu">open</span>(<span class="st">&quot;sampleText&quot;</span>).read()
+tokensFile<span class="op">=</span><span class="bu">open</span>(<span class="st">&quot;foundedTokens&quot;</span>,<span class="st">&quot;w&quot;</span>)
+errorsFile<span class="op">=</span><span class="bu">open</span>(<span class="st">&quot;errorChars&quot;</span>,<span class="st">&quot;w&quot;</span>)
+wordCounterFile<span class="op">=</span><span class="bu">open</span>(<span class="st">&quot;wordCounterFile.md&quot;</span>,<span class="st">&quot;w&quot;</span>)
+<span class="bu">print</span>(<span class="st">&quot;Searching for tokens...&quot;</span>)
+startTime<span class="op">=</span>time()
+foundedTokens,errorChars<span class="op">=</span>wordTokenizer(text)
+<span class="bu">print</span>(<span class="ss">f&quot;&quot;&quot;Totally </span><span class="sc">{</span><span class="bu">len</span>(foundedTokens)<span class="sc">}</span><span class="ss"> tokens found in </span><span class="sc">{</span>time()<span class="op">-</span>startTime<span class="sc">:.4f}</span><span class="ss">seconds</span><span class="ch">
+</span><span class="ss">writing the results to files...&quot;&quot;&quot;</span>)
+errorsFile.write(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>.join(<span class="bu">str</span>(i)<span class="op">+</span><span class="st">&quot;</span><span class="ch">\n\t</span><span class="st">code: &quot;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">ord</span>(i.text)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">set</span>(errorChars)))
+<span class="cf">for</span> i <span class="kw">in</span> foundedTokens:
+    tokensFile.write(<span class="bu">str</span>(i)<span class="op">+</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+wordFrequency<span class="op">=</span>wordCounter(foundedTokens)
+<span class="co"># print(wordFrequency)</span>
+wordCounterFile.write(<span class="st">&quot;|index|token|frequency|</span><span class="ch">\n</span><span class="st">|:-:|:-|:-:|</span><span class="ch">\n</span><span class="st">&quot;</span>)
+wordCounterFile.write(\
+<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>.join(<span class="ss">f&quot;|</span><span class="sc">{</span>index<span class="sc">}</span><span class="ss">|</span><span class="ch">\\</span><span class="sc">{i}</span><span class="ss">|</span><span class="sc">{j}</span><span class="ss">|&quot;</span> <span class="cf">for</span> index,(i,j) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">sorted</span>(wordFrequency.items(),key<span class="op">=</span><span class="kw small-code">lambda</span> x:x[<span class="dv">1</span>]))))</code></pre></div>
+<p><code>sampleText</code> file contains <strong>153449</strong> characters</p>
+<h2 id="output">Output</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">python3</span> wordTokenizer.py
+<span class="ex">Searching</span> for tokens...
+<span class="ex">Totally</span> 68564 tokens found in 9.1284 seconds
+<span class="ex">writing</span> the results to files...</code></pre></div>
+<br><br>
+<p>result table is available below:</p>
+<table>
+<thead>
+<tr class="header">
+  <th align="center">index</th>
+  <th align="left">token</th>
+  <th align="center">frequency</th>
+  <th align="center">index</th>
+  <th align="left">token</th>
+  <th align="center">frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">5010</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(12569, 12570)&gt;,[=]</td>
+<td align="center">103</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5011</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(253, 255)&gt;,[بر]</td>
+<td align="center">104</td>
+</tr>
+<tr class="odd">
+<td align="center">5012</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(1330, 1333)&gt;,[های]</td>
+<td align="center">106</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5013</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(9991, 9993)&gt;,[یا]</td>
+<td align="center">109</td>
+</tr>
+<tr class="odd">
+<td align="center">5014</td>
+<td align="left">&lt;TOKEN type:ENGLISH_WORD pos:(11901, 11913)&gt;,[displaystyle]</td>
+<td align="center">111</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5015</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(707, 709)&gt;,[ها]</td>
+<td align="center">114</td>
+</tr>
+<tr class="odd">
+<td align="center">5016</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(12247, 12248)&gt;,[_]</td>
+<td align="center">119</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5017</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(4564, 4567)&gt;,[شده]</td>
+<td align="center">123</td>
+</tr>
+<tr class="odd">
+<td align="center">5018</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(4509, 4511)&gt;,[آن]</td>
+<td align="center">130</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5019</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(62, 63)&gt;,[:]</td>
+<td align="center">169</td>
+</tr>
+<tr class="odd">
+<td align="center">5020</td>
+<td align="left">&lt;TOKEN type:ENGLISH_WORD pos:(11942, 11943)&gt;,[d]</td>
+<td align="center">173</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5021</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(24933, 24934)&gt;,[*]</td>
+<td align="center">186</td>
+</tr>
+<tr class="odd">
+<td align="center">5022</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(1032, 1034)&gt;,[یک]</td>
+<td align="center">193</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5023</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(4322, 4323)&gt;,[(]</td>
+<td align="center">194</td>
+</tr>
+<tr class="odd">
+<td align="center">5024</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(4341, 4342)&gt;,[)]</td>
+<td align="center">196</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5025</td>
+<td align="left">&lt;TOKEN type:ENGLISH_WORD pos:(11897, 11898)&gt;,[t]</td>
+<td align="center">210</td>
+</tr>
+<tr class="odd">
+<td align="center">5026</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(4926, 4930)&gt;,[برای]</td>
+<td align="center">219</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5027</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(431, 434)&gt;,[است]</td>
+<td align="center">281</td>
+</tr>
+<tr class="odd">
+<td align="center">5028</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(147, 149)&gt;,[با]</td>
+<td align="center">293</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5029</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(6233, 6234)&gt;,[,]</td>
+<td align="center">296</td>
+</tr>
+<tr class="odd">
+<td align="center">5030</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(722, 724)&gt;,[را]</td>
+<td align="center">347</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5031</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(104, 106)&gt;,[که]</td>
+<td align="center">371</td>
+</tr>
+<tr class="odd">
+<td align="center">5032</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(49, 52)&gt;,[این]</td>
+<td align="center">423</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5033</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(11900, 11901)&gt;,[]</td>
+<td align="center">447</td>
+</tr>
+<tr class="odd">
+<td align="center">5034</td>
+<td align="left">&lt;TOKEN type:ENGLISH_WORD pos:(24943, 24947)&gt;,[link]</td>
+<td align="center">477</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5035</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(11899, 11900)&gt;,[{]</td>
+<td align="center">495</td>
+</tr>
+<tr class="odd">
+<td align="center">5036</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(11915, 11916)&gt;,[}]</td>
+<td align="center">495</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5037</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(0, 2)&gt;,[به]</td>
+<td align="center">559</td>
+</tr>
+<tr class="odd">
+<td align="center">5038</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(107, 109)&gt;,[از]</td>
+<td align="center">624</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5039</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(36, 38)&gt;,[در]</td>
+<td align="center">735</td>
+</tr>
+<tr class="odd">
+<td align="center">5040</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(18, 19)&gt;,[،]</td>
+<td align="center">742</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5041</td>
+<td align="left">&lt;TOKEN type:PERSIAN_WORD pos:(354, 355)&gt;,[و]</td>
+<td align="center">859</td>
+</tr>
+<tr class="odd">
+<td align="center">5042</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(198, 199)&gt;,[.]</td>
+<td align="center">915</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5043</td>
+<td align="left">&lt;TOKEN type:PUNCTUATION pos:(213, 214)&gt;,[-]</td>
+<td align="center">2370</td>
+</tr>
+<tr class="odd">
+<td align="center">5044</td>
+<td align="left">&lt;TOKEN type:NEW_LINE pos:(199, 200)&gt;,[]</td>
+<td align="center">2390</td>
+<!-- </tr>
+<tr class="even"> -->
+<td align="center">5045</td>
+<td align="left">&lt;TOKEN type:SPACE pos:(2, 3)&gt;,[ ]</td>
+<td align="center">32047</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

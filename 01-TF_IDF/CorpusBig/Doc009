@@ -1,0 +1,16 @@
+
+تابع معکوس فراوانی متن (idf یا Inverse document frequency)
+
+idf: معیاری است برای میزان کلماتی که در پیکره متنی متداول هستند و معمولاً تکرار می‌شوند.[۴] طریقه بدست آوردن این معیار بدین صورت است که از لگاریتمِ تقسیم تعداد کل متون در پیکره متنی بر تعداد متونی که شامل کلمه متداول استفاده می‌کنیم. به زبان ریاضی این تابع را با i d f ( t , D ) = log ⁡ N / | { d ∈ D : t ∈ d } | {\displaystyle idf(t,D)=\log {N}/{|\{d\in D:t\in d\}|}} {\displaystyle idf(t,D)=\log {N}/{|\{d\in D:t\in d\}|}} نشان می‌دهیم. در اینجا N = | D | {\displaystyle N={|D|}} {\displaystyle N={|D|}}یعنی تعداد کل متنها در پیکره متنی و | { d ∈ D : t ∈ d } | {\displaystyle |\{d\in D:t\in d\}|} {\displaystyle |\{d\in D:t\in d\}|} تعداد متن‌هایی را نمایش می‌دهد که کلمه t {\displaystyle t} t در آن ظاهر شده است. برای مثال: فرض کنیم در پیکره متنی ما هزار متن وجود داشته باشد. اگر در تمام این هزار متن یک کلمه خاص (مثلاً کلمه «است») وجود داشته باشد حاصل لگاریتم هزار تقسیم بر هزار می‌شود صفر. یعنی حتماً این کلمه جزوِ کلمات متداول بوده و باید ضریب صفر بگیرد ولی اگر تکرار در صد متن اتفاق افتاده باشد جواب می‌شود لگاریتم ده که حاصل آن یک است، پس ضریب یک می‌گیرد.[۵] هر چقدر متونی که کلمه در آن تکرار شده باشد بیشتر باشد وزن i d f {\displaystyle idf} {\displaystyle idf} کوچکتر می‌شود؛ البته چون ممکن است کلمه‌ای اصلاً در هیچ متنی تکرار نشده باشد و مخرج صفر شود مخرج را معمولاً با یک جمع می‌کنیم. البته تابع معکوس فراوانی می‌تواند فرم‌های متفاوتی بگیرد که چند نمونه از آن در جدول پایین نمایش داده شده است.[۴]
+
+Variants of inverse document frequency (idf) weight weighting scheme 	idf weight ( n t = | { d ∈ D : t ∈ d } | {\displaystyle n_{t}=|\{d\in D:t\in d\}|} {\displaystyle n_{t}=|\{d\in D:t\in d\}|})
+unary 	1
+inverse document frequency 	log ⁡ N n t = − log ⁡ n t N {\displaystyle \log {\frac {N}{n_{t}}}=-\log {\frac {n_{t}}{N}}} {\displaystyle \log {\frac {N}{n_{t}}}=-\log {\frac {n_{t}}{N}}}
+inverse document frequency smooth 	log ⁡ ( 1 + N n t ) {\displaystyle \log \left(1+{\frac {N}{n_{t}}}\right)} {\displaystyle \log \left(1+{\frac {N}{n_{t}}}\right)}
+inverse document frequency max 	log ⁡ ( max { t ′ ∈ d } n t ′ 1 + n t ) {\displaystyle \log \left({\frac {\max _{\{t'\in d\}}n_{t'}}{1+n_{t}}}\right)} {\displaystyle \log \left({\frac {\max _{\{t'\in d\}}n_{t'}}{1+n_{t}}}\right)}
+probabilistic inverse document frequency 	log ⁡ N − n t n t {\displaystyle \log {\frac {N-n_{t}}{n_{t}}}} {\displaystyle \log {\frac {N-n_{t}}{n_{t}}}}
+
+فراوانی وزنی نهائی (tf-idf)
+
+فراوانی وزنی تی‌اف-آی‌دی‌اف که وزن نهایی کلمات در متون است از ضرب تابع فراوانی کلمه یعنی t f {\displaystyle tf} {\displaystyle tf} و تابع معکوس فراوانی یعنی i d f {\displaystyle idf} {\displaystyle idf} بدست می‌آید.[۳] چند نمونه از این توابع در جدول پائین لیست شده‌است.
+Recommended tf–idf weighting schemes weighting scheme 	document term weight 	query term weight

@@ -1,0 +1,16 @@
+
+فراوانی نهایی که حاصلضرب دو تابع اخیر است، برای هر دو متن صفر می‌شود:
+
+    t f i d f ( t h i s , d 1 , D ) = 0.2 × 0 = 0 {\displaystyle \mathrm {tfidf} ({\mathsf {this}},d_{1},D)=0.2\times 0=0} {\displaystyle \mathrm {tfidf} ({\mathsf {this}},d_{1},D)=0.2\times 0=0}
+    t f i d f ( t h i s , d 2 , D ) = 0.091 × 0 = 0 {\displaystyle \mathrm {tfidf} ({\mathsf {this}},d_{2},D)=0.091\times 0=0} {\displaystyle \mathrm {tfidf} ({\mathsf {this}},d_{2},D)=0.091\times 0=0}
+
+کلمه e l e c t i o n {\displaystyle {\mathsf {election}}} {\displaystyle {\mathsf {election}}} را هم به همان شکل حساب میکنیم:
+
+    t f ( e l e c t i o n , d 1 ) = 0 5 = 0 {\displaystyle \mathrm {tf} ({\mathsf {election}},d_{1})={\frac {0}{5}}=0} {\displaystyle \mathrm {tf} ({\mathsf {election}},d_{1})={\frac {0}{5}}=0}
+    t f ( e l e c t i o n , d 2 ) = 3 11 ≈ 0.273 {\displaystyle \mathrm {tf} ({\mathsf {election}},d_{2})={\frac {3}{11}}\approx 0.273} {\displaystyle \mathrm {tf} ({\mathsf {election}},d_{2})={\frac {3}{11}}\approx 0.273}
+    i d f ( e l e c t i o n , D ) = log ⁡ ( 2 1 ) = 0.301 {\displaystyle \mathrm {idf} ({\mathsf {election}},D)=\log \left({\frac {2}{1}}\right)=0.301} {\displaystyle \mathrm {idf} ({\mathsf {election}},D)=\log \left({\frac {2}{1}}\right)=0.301}
+
+جواب نهائی برای کلمه e l e c t i o n {\displaystyle {\mathsf {election}}} {\displaystyle {\mathsf {election}}} در دو متن برابر خواهد بود با:‌
+
+    t f i d f ( e l e c t i o n , d 1 , D ) = t f ( e l e c t i o n , d 1 ) × i d f ( e l e c t i o n , D ) = 0 × 0.301 = 0 {\displaystyle \mathrm {tfidf} ({\mathsf {election}},d_{1},D)=\mathrm {tf} ({\mathsf {election}},d_{1})\times \mathrm {idf} ({\mathsf {election}},D)=0\times 0.301=0} {\displaystyle \mathrm {tfidf} ({\mathsf {election}},d_{1},D)=\mathrm {tf} ({\mathsf {election}},d_{1})\times \mathrm {idf} ({\mathsf {election}},D)=0\times 0.301=0}
+    t f i d f ( e l e c t i o n , d 2 , D ) = t f ( e l e c t i o n , d 2 ) × i d f ( e l e c t i o n , D ) = 0.273 × 0.301 ≈ 0.083 {\displaystyle \mathrm {tfidf} ({\mathsf {election}},d_{2},D)=\mathrm {tf} ({\mathsf {election}},d_{2})\times \mathrm {idf} ({\mathsf {election}},D)=0.273\times 0.301\approx 0.083} {\displaystyle \mathrm {tfidf} ({\mathsf {election}},d_{2},D)=\mathrm {tf} ({\mathsf {election}},d_{2})\times \mathrm {idf} ({\mathsf {election}},D)=0.273\times 0.301\approx 0.083}

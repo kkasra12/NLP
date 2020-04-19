@@ -1,0 +1,20 @@
+<TOKEN type:ERROR pos:(67730, 67731)>,[­]
+	code: 173
+<TOKEN type:ERROR pos:(82102, 82103)>,[⃣]
+	code: 8419
+<TOKEN type:ERROR pos:(104909, 104910)>,[•]
+	code: 8226
+<TOKEN type:ERROR pos:(151176, 151177)>,[ ]
+	code: 160
+<TOKEN type:ERROR pos:(23273, 23274)>,[🇯]
+	code: 127471
+<TOKEN type:ERROR pos:(23277, 23278)>,[🇮]
+	code: 127470
+<TOKEN type:ERROR pos:(31971, 31972)>,[�]
+	code: 65533
+<TOKEN type:ERROR pos:(23275, 23276)>,[🇴]
+	code: 127476
+<TOKEN type:ERROR pos:(23279, 23280)>,[🇳]
+	code: 127475
+<TOKEN type:ERROR pos:(23281, 23282)>,[↯]
+	code: 8623
