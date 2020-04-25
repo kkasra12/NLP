@@ -8,7 +8,7 @@ persianLetters="ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی
 # ZERO WIDTH NON-JOINER (U+200C)
 # ZERO WIDTH JOINER (U+200D)
 # LEFT-TO-RIGHT MARK (U+200E)
-persionSounds="".join(chr(i) for i in range(1611,1632))+"ء"
+persianSounds="["+"".join(chr(i) for i in range(1611,1632))+"ء"+"]"
 extensions=open(join(DIRNAME,"extensions")).read().split("\n")[:-1]
 dummyPunctuations="\u22c5\u2032\u2212\u2013\u061b"#+"\u061f\u2061"
 dummyPunctuations+="؛؟" # these are persian pronunciations
@@ -24,7 +24,7 @@ tokensMap={"PUNCTUATION"        :rf'[!"#$%&\'()*+,\-./:;≈❗️,«»<=>?@\[\\\
            "EMOJI"              :"["+open(join(DIRNAME,"./emojies")).read().replace("\n","")+"]",
            "IP"                 :r"\d\.\d\.\d\.\d",
            "NUMBER"             :r"(?:\d+(?:(?:\.\d+)|\.)?)|(?:\.\d+)",
-           "PERSIAN_WORD"       :f"[{persianLetters}][{persianLetters}{persionSounds}]*[{persianLetters}]?",
+           "PERSIAN_WORD"       :f"[{persianLetters}][{persianLetters}{persianSounds}]*[{persianLetters}]?",
            "ENGLISH_WORD"       :r"[A-Za-z]+(?:\'[a-z]+)?",
            "SENTENCE_DELIMITERS":r"[.?!؟]",
            "ENGLISH_HUMAN_NAME" :r"(?:(?i)mr|mis|miss)\.[A-Za-z][a-z]+",
