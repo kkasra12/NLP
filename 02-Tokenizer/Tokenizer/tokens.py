@@ -4,7 +4,8 @@ from os import chdir
 from os.path import dirname,join
 DIRNAME=dirname(__file__)
 
-persianLetters="ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیأإآيئؤكٓه"+"\u200c\u200d\u200e"+"ة"
+persianLetters="ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیأإآيئؤكٓه"
+persianLetters+="ة"
 # ZERO WIDTH NON-JOINER (U+200C)
 # ZERO WIDTH JOINER (U+200D)
 # LEFT-TO-RIGHT MARK (U+200E)
@@ -25,7 +26,7 @@ tokensMap={"PUNCTUATION"        :rf'[!"#$%&\'()*+,\-./:;≈❗️,«»<=>?@\[\\\
            "IP"                 :r"\d\.\d\.\d\.\d",
            "NUMBER"             :r"(?:\d+(?:(?:\.\d+)|\.)?)|(?:\.\d+)",
            # "PERSIAN_WORD"       :f"[{persianLetters}][{persianLetters}{persianSounds}]*[{persianLetters}]?",
-           "PERSIAN_WORD"       :f"[{persianLetters}]+",
+           "PERSIAN_WORD"       :f"[{persianLetters}]+[{persianLetters}\u200c\u200d]*[{persianLetters}]+",
            "ENGLISH_WORD"       :r"[A-Za-z]+(?:\'[a-z]+)?",
            "SENTENCE_DELIMITERS":r"[.?!؟]",
            "ENGLISH_HUMAN_NAME" :r"(?:(?i)mr|mis|miss)\.[A-Za-z][a-z]+",
@@ -34,6 +35,7 @@ tokensMap={"PUNCTUATION"        :rf'[!"#$%&\'()*+,\-./:;≈❗️,«»<=>?@\[\\\
            "EMAIL"              :r"[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]+[a-zA-Z0-9])?\.[a-zA-Z0-9](?:[a-zA-Z0-9-]+[a-zA-Z0-9])?",
            "GREEL_LETTERS"      :"[ΑαΒβΓγŋΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσΤτΥυΦφΧχΨψΩω∑∈]",
            "DEGREE"             :r"(\d+°C)|(\d+°F)",
+           " LEFT_TO_RIGHT_MARK":"\u200e",
            "NEW_LINE"           :r"\n",
            "SPACE"              :" ",
            "TAB"                :r"\t"
