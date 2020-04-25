@@ -1,6 +1,12 @@
 import Tokenizer as tok
 import documentStaticals as ds
 from time import time
+def makeDfReadyToSave(df):
+    newDf=df.copy()
+    newDf["TokenText"]=[t.text for t in df.index]
+    newDf["TokenType"]=[t.type for t in df.index]
+    newDf=newDf[["TokenType","TokenText"]+list(df.columns)]
+    return newDf
 if __name__ == '__main__':
     # corpusName="CorpusSmall"
     corpusName="CorpusBig"
@@ -18,9 +24,9 @@ if __name__ == '__main__':
     print(f"The TF-IDF matrix is calculated in {time()-startTime}\n{tf_idf}\n{'-'*50}")
 
     print("saving files...")
-    tf.to_excel("tf.xlsx")
+    makeDfReadyToSave(tf).to_excel("tf.xlsx")
     print("\tTF saved...")
-    df.to_excel("df.xlsx")
+    makeDfReadyToSave(df).to_excel("df.xlsx")
     print("\tDF saved...")
-    tf_idf.to_excel("tf_idf.xlsx")
+    makeDfReadyToSave(tf_idf).to_excel("tf_idf.xlsx")
     print("\tTF-IDF saved...")
