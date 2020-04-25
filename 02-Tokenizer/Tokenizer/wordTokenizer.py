@@ -1,7 +1,19 @@
 from re import fullmatch,sub
 # import tokens
 from .tokens import tokensMap,Token,persionSounds
-from time import time
+from os.path import dirname,join
+DIRNAME=dirname(__file__)
+
+NormalizerFile=open(join(DIRNAME,"normalizerData"))
+NormalizerMap={}
+for line in NormalizerFile:
+    key,value=line.split("->")
+    value=value.replace("\n","")
+    for char in key:
+        assert char not in NormalizerMap, "duplicated character found!!!"
+        NormalizerMap.update({char:value})
+
+Normalize=lambda text,NormalizerMap=NormalizerMap:sub(persionSounds,"","".join(NormalizerMap.get(i,i) for i in text))
 
 def textSpliter(t):
     '''
@@ -14,7 +26,7 @@ def textSpliter(t):
     else:
         return (t,"")
 
-def wordTokenizer(text,tokensMap=tokensMap):
+def wordTokenizer(text,tokensMap=tokensMap,Normalizer=Normalize):
     '''
     this function will returns all tokens in the text.
     Parameters:
@@ -24,6 +36,7 @@ def wordTokenizer(text,tokensMap=tokensMap):
         foundedTokens: list of Toke class
         errorChars:    list of Toke class
     '''
+    text=Normalizer(text)
     foundedTokens=[]
     errorChars=[]
     pos=0
@@ -68,20 +81,3 @@ def wordCounter(tokensList):
     for word in tokensList:
         allwords[word]=allwords.get(word,0)+1
     return allwords
-
-if __name__ == '__main__':
-    text=open("sampleText").read()
-    tokensFile=open("foundedTokens","w")
-    errorsFile=open("errorChars","w")
-    wordCounterFile=open("wordCounterFile.md","w")
-    print("Searching for tokens...")
-    startTime=time()
-    foundedTokens,errorChars=wordTokenizer(text)
-    print(f"Totally {len(foundedTokens)} tokens found in {time()-startTime:.4f}seconds\nwriting the results to files...")
-    errorsFile.write("\n".join(str(i)+"\n\tcode: "+str(ord(i.text)) for i in set(errorChars)))
-    for i in foundedTokens:
-        tokensFile.write(str(i)+"\n")
-    wordFrequency=wordCounter(foundedTokens)
-    # print(wordFrequency)
-    wordCounterFile.write("|index|token|frequency|\n|:-:|:-|:-:|\n")
-    wordCounterFile.write("\n".join(f"|{index}|\\{i}|{j}|" for index,(i,j) in enumerate(sorted(wordFrequency.items(),key=lambda x:x[1]))))

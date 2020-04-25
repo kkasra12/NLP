@@ -23,8 +23,7 @@ dummyPunctuations+="{}…"
 tokensMap={"PUNCTUATION"        :rf'[!"#$%&\'()*+,\-./:;≈❗️,«»<=>?@\[\\\]\^_`|~،”“.×{dummyPunctuations}]',
            "EMOJI"              :"["+open(join(DIRNAME,"./emojies")).read().replace("\n","")+"]",
            "IP"                 :r"\d\.\d\.\d\.\d",
-           "NUMBER"             :r"(?:\d+(?:٫\d+)?)|(?:\d+(?:\.\d+)?)",
-           "UNSTRUCTURED_NUMBER":r"[\d٫]+|[\d\.]+",
+           "NUMBER"             :r"(?:\d+(?:(?:\.\d+)|\.)?)|(?:\.\d+)",
            "PERSIAN_WORD"       :f"[{persianLetters}][{persianLetters}{persionSounds}]*[{persianLetters}]?",
            "ENGLISH_WORD"       :r"[A-Za-z]+(?:\'[a-z]+)?",
            "SENTENCE_DELIMITERS":r"[.?!؟]",
@@ -39,23 +38,16 @@ tokensMap={"PUNCTUATION"        :rf'[!"#$%&\'()*+,\-./:;≈❗️,«»<=>?@\[\\\
            "TAB"                :r"\t"
         }
 
-NormalizerFile=open(join(DIRNAME,"normalizerData"))
-NormalizerMap={}
-for line in NormalizerFile:
-    key,value=line.split("->")
-    value=value.replace("\n","")
-    for char in key:
-        assert char not in NormalizerMap, "duplicated character found!!!"
-        NormalizerMap.update({char:value})
 
-Normalize=lambda text,NormalizerMap=NormalizerMap:sub(persionSounds,"","".join(NormalizerMap.get(i,i) for i in text))
 class Token:
     def __init__(self,type,text,regex,pos=(-1,-1)):
-        self.realText=text
         self.type=type
-        self.text=Normalize(text)
         self.regex=regex
         self.pos=pos
+        if type=="NUMBER":
+            self.text=str(float(text))
+        else:
+            self.text=text
 
     def __eq__(self,other):
         if self.text==other.text and self.type==other.type:
