@@ -1,0 +1,16 @@
+    ۳ جستارهای وابسته
+    ۴ منابع
+
+تعریف ریاضی
+
+وزن کلمه t {\displaystyle t} {\displaystyle t} در متن d {\displaystyle d} {\displaystyle d} برابر است با حاصلضرب تابع فراوانی کلمه یعنی t f {\displaystyle tf} {\displaystyle tf} و تابع معکوس فراوانی یعنی i d f {\displaystyle idf} {\displaystyle idf} که در پایین تعریف شده‌اند.[۳]
+تابع فراوانی کلمه (tf یا Term Frequency)
+
+اگر فرض کنیم f t , d {\displaystyle f_{t,d}} {\displaystyle f_{t,d}}تکرار تعداد دفعاتی باشد که کلمه t {\displaystyle t} {\displaystyle t} در متن d {\displaystyle d} {\displaystyle d} اتفاق افتاده است، تابع فراوانی کلمه یا t f ( t , d ) {\displaystyle tf(t,d)} {\displaystyle tf(t,d)} به چند طریق می‌تواند تعریف شود[۳]:
+
+    فراوانی خام:
+        t f ( t , d ) = f t , d {\displaystyle tf(t,d)=f_{t,d}} {\displaystyle tf(t,d)=f_{t,d}}
+    فراوانی خامِ نرمال‌سازی شده:‌
+        t f ( t , d ) = f t , d ∑ s ∈ d f s , d {\displaystyle tf(t,d)={\frac {f_{t,d}}{\sum _{s\in d}f_{s,d}}}} {\displaystyle tf(t,d)={\frac {f_{t,d}}{\sum _{s\in d}f_{s,d}}}}
+    فراوانی بولی:
+        t f ( t , d ) = 1 ( f t , d > 0 ) {\displaystyle tf(t,d)=1\left(f_{t,d}>0\right)} {\displaystyle tf(t,d)=1\left(f_{t,d}>0\right)}

@@ -1,0 +1,16 @@
+        اگر کلمه f t , d {\displaystyle f_{t,d}} {\displaystyle f_{t,d}}برزگتر از صفر باشد t f ( t , d ) {\displaystyle tf(t,d)} {\displaystyle tf(t,d)}یک است و در غیر این صورت صفر.
+    فراوانی لگاریتمی:
+        t f ( t , d ) = log ⁡ ( f t , d + 1 ) {\displaystyle tf(t,d)=\log(f_{t,d}+1)} {\displaystyle tf(t,d)=\log(f_{t,d}+1)}
+    فراوانی تکمیل شده:
+        t f ( t , d ) = 0.5 + 0.5 ⋅ f t , d max { f t ′ , d : t ′ ∈ d } {\displaystyle tf(t,d)=0.5+0.5\cdot {\frac {f_{t,d}}{\max\{f_{t',d}:t'\in d\}}}} {\displaystyle tf(t,d)=0.5+0.5\cdot {\frac {f_{t,d}}{\max\{f_{t',d}:t'\in d\}}}}
+        این تابع برای برای جلوگیری از تمایل به سمت متون بزرگتر مورد استفاده قرار می‌گیرید، یعنی به دلیل حجم بالاتر متن نسبت به سایر متون ممکن است کلمه مورد نظر بیشتر تکرار شده باشد ولی این به دلیل فراوانی بیشتر کلمه در متن بزرگتر نیست. این مورد بیشتر در موتور جستجو برای بازیابی مستندات با کلمات مورد جستجو کاربرد دارد.
+
+این موارد را می‌توان در جدول پایین به صورت خلاصه نمایش داد:
+
+Variants of term frequency (tf) weight weighting scheme 	tf weight
+binary 	0 , 1 {\displaystyle {0,1}} {\displaystyle {0,1}}
+raw count 	f t , d {\displaystyle f_{t,d}} {\displaystyle f_{t,d}}
+term frequency 	f t , d / ∑ t ′ ∈ d f t ′ , d {\displaystyle f_{t,d}{\Bigg /}{\sum _{t'\in d}{f_{t',d}}}} {\displaystyle f_{t,d}{\Bigg /}{\sum _{t'\in d}{f_{t',d}}}}
+log normalization 	log ⁡ ( 1 + f t , d ) {\displaystyle \log(1+f_{t,d})} {\displaystyle \log(1+f_{t,d})}
+double normalization 0.5 	0.5 + 0.5 ⋅ f t , d max { t ′ ∈ d } f t ′ , d {\displaystyle 0.5+0.5\cdot {\frac {f_{t,d}}{\max _{\{t'\in d\}}{f_{t',d}}}}} {\displaystyle 0.5+0.5\cdot {\frac {f_{t,d}}{\max _{\{t'\in d\}}{f_{t',d}}}}}
+double normalization K 	K + ( 1 − K ) f t , d max { t ′ ∈ d } f t ′ , d {\displaystyle K+(1-K){\frac {f_{t,d}}{\max _{\{t'\in d\}}{f_{t',d}}}}} {\displaystyle K+(1-K){\frac {f_{t,d}}{\max _{\{t'\in d\}}{f_{t',d}}}}}

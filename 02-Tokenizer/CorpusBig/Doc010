@@ -1,0 +1,16 @@
+1 	f t , d ⋅ log ⁡ N n t {\displaystyle f_{t,d}\cdot \log {\frac {N}{n_{t}}}} {\displaystyle f_{t,d}\cdot \log {\frac {N}{n_{t}}}} 	( 0.5 + 0.5 f t , q max t f t , q ) ⋅ log ⁡ N n t {\displaystyle \left(0.5+0.5{\frac {f_{t,q}}{\max _{t}f_{t,q}}}\right)\cdot \log {\frac {N}{n_{t}}}} {\displaystyle \left(0.5+0.5{\frac {f_{t,q}}{\max _{t}f_{t,q}}}\right)\cdot \log {\frac {N}{n_{t}}}}
+2 	1 + log ⁡ f t , d {\displaystyle 1+\log f_{t,d}} {\displaystyle 1+\log f_{t,d}} 	log ⁡ ( 1 + N n t ) {\displaystyle \log \left(1+{\frac {N}{n_{t}}}\right)} {\displaystyle \log \left(1+{\frac {N}{n_{t}}}\right)}
+3 	( 1 + log ⁡ f t , d ) ⋅ log ⁡ N n t {\displaystyle (1+\log f_{t,d})\cdot \log {\frac {N}{n_{t}}}} {\displaystyle (1+\log f_{t,d})\cdot \log {\frac {N}{n_{t}}}} 	( 1 + log ⁡ f t , q ) ⋅ log ⁡ N n t {\displaystyle (1+\log f_{t,q})\cdot \log {\frac {N}{n_{t}}}} {\displaystyle (1+\log f_{t,q})\cdot \log {\frac {N}{n_{t}}}}
+
+مثال
+
+فرض کنیم D {\displaystyle D} {\displaystyle D} پیکره متنی ما باشد و فقط دو متن داشته باشد به این شکل: D = { d 1 = ′ t h i s i s m y m a i n s a m p l e ′ , d 2 = ′ p r e v i o u s e l e c t i o n r e s u l t s a r e d i f f e r e n t f r o m t h i s e l e c t i o n a n d l a s t e l e c t i o n ′ } {\displaystyle D=\{d_{1}={\mathsf {'this\,\,is\,\,my\,\,main\,\,sample'}},\,\,d_{2}={\mathsf {'previous\,\,election\,\,results\,\,are\,\,different\,\,from\,\,this\,\,election\,\,and\,\,last\,\,election'}}\}} {\displaystyle D=\{d_{1}={\mathsf {'this\,\,is\,\,my\,\,main\,\,sample'}},\,\,d_{2}={\mathsf {'previous\,\,election\,\,results\,\,are\,\,different\,\,from\,\,this\,\,election\,\,and\,\,last\,\,election'}}\}}
+
+ابتدا تابع فراوانی کلمه t h i s {\displaystyle {\mathsf {this}}} {\displaystyle {\mathsf {this}}} را در هر دو متن حساب میکنیم:‌
+
+    t f ( t h i s , d 1 ) = 1 5 = 0.2 {\displaystyle \mathrm {tf} ({\mathsf {this}},d_{1})={\frac {1}{5}}=0.2} {\displaystyle \mathrm {tf} ({\mathsf {this}},d_{1})={\frac {1}{5}}=0.2}
+    t f ( t h i s , d 2 ) = 1 11 ≈ 0.091 {\displaystyle \mathrm {tf} ({\mathsf {this}},d_{2})={\frac {1}{11}}\approx 0.091} {\displaystyle \mathrm {tf} ({\mathsf {this}},d_{2})={\frac {1}{11}}\approx 0.091}
+
+سپس تابع معکوس فراوانی این کلمه را برای پیکره متنی D {\displaystyle D} {\displaystyle D} محاسبه می‌کنیم، جواب صفر میشود:
+
+    i d f ( t h i s , D ) = log ⁡ ( 2 2 ) = 0 {\displaystyle \mathrm {idf} ({\mathsf {this}},D)=\log \left({\frac {2}{2}}\right)=0} {\displaystyle \mathrm {idf} ({\mathsf {this}},D)=\log \left({\frac {2}{2}}\right)=0}
