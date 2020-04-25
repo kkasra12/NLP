@@ -1,6 +1,6 @@
 from re import fullmatch,sub
 # import tokens
-from .tokens import tokensMap,Token,persionSounds
+from .tokens import tokensMap,Token,persianSounds
 from os.path import dirname,join
 DIRNAME=dirname(__file__)
 
@@ -13,7 +13,7 @@ for line in NormalizerFile:
         assert char not in NormalizerMap, "duplicated character found!!!"
         NormalizerMap.update({char:value})
 
-Normalize=lambda text,NormalizerMap=NormalizerMap:sub(persionSounds,"","".join(NormalizerMap.get(i,i) for i in text))
+Normalize=lambda text,NormalizerMap=NormalizerMap:sub(persianSounds,"","".join(NormalizerMap.get(i,i) for i in text))
 
 def textSpliter(t):
     '''
