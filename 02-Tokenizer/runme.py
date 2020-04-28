@@ -10,6 +10,7 @@ def makeDfReadyToSave(df):
 if __name__ == '__main__':
     # corpusName="CorpusSmall"
     corpusName="CorpusBig"
+    # corpusName="TelegramCorpus"
     startTime=time()
     tf=ds.TF(corpusName,outputFormat="pandas_DataFrame")
     print(f"The TF matrix is calculated in {time()-startTime}\n{tf}\n{'-'*50}")

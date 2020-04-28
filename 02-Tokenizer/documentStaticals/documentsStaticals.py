@@ -2,7 +2,7 @@ import Tokenizer as tok
 from os import path,listdir
 import pandas as pd
 from time import time
-def TF(documents,outputFormat='sparseMatrix'):
+def TF(documents,outputFormat='sparseMatrix',progressBar=True):
     '''
     Parameters:
         documents: string, list
@@ -29,9 +29,14 @@ def TF(documents,outputFormat='sparseMatrix'):
     if outputFormat not in ['sparseMatrix', 'pandas_DataFrame']:
         raise ValueError("The outputFormat must be 'sparseMatrix' or 'pandas_DataFrame'")
 
+    if not progressBar:
+        tqdm=lambda x:x
+    else:
+        from tqdm import tqdm
+
 
     TF_mat={}
-    for fileName in documents:
+    for fileName in tqdm(documents):
         if not fileName in TF_mat:
             fileObj=open(fileName)
             TF_mat.update({fileName:tok.wordCounter(tok.wordTokenizer(fileObj.read())[0])})
