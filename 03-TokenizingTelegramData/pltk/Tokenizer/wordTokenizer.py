@@ -32,12 +32,20 @@ def wordTokenizer(text,tokensMap=tokensMap,Normalizer=Normalize,verbose=0):
     textlst=text.split("\n")
     allTokens=[]
     allErrorChars=[]
-    for subText in tqdm(textlst):
-        tmp=wordTokenizer_(subText,tokensMap=tokensMap,Normalizer=Normalize,verbose=0)
-        allTokens+=tmp[0]
-        allErrorChars+=tmp[1]
-        assert len(tmp)==2
-    return allTokens,allErrorChars
+    if verbose:
+        for subText in tqdm(textlst,desc="wordTokenizer"):
+            tmp=wordTokenizer_(subText,tokensMap=tokensMap,Normalizer=Normalize,verbose=0)
+            allTokens+=tmp[0]
+            allErrorChars+=tmp[1]
+            assert len(tmp)==2
+        return allTokens,allErrorChars
+    else:
+        for subText in textlst:
+            tmp=wordTokenizer_(subText,tokensMap=tokensMap,Normalizer=Normalize,verbose=0)
+            allTokens+=tmp[0]
+            allErrorChars+=tmp[1]
+            assert len(tmp)==2
+        return allTokens,allErrorChars
 
 def wordTokenizer_(text,tokensMap=tokensMap,Normalizer=Normalize,verbose=0):
     '''
@@ -65,6 +73,8 @@ def wordTokenizer_(text,tokensMap=tokensMap,Normalizer=Normalize,verbose=0):
             prePos=pos
         # print(f"'{tmp}'",pos)
         # input()
+        # if 'twitter' in tmp:
+        #     print(tmp)
         for tokName,tokRegex in tokensMap.items():
             if fullmatch(tokRegex,tmp):
                 foundedTokens.append(Token(tokName,
@@ -93,7 +103,7 @@ def wordTokenizer_(text,tokensMap=tokensMap,Normalizer=Normalize,verbose=0):
         progressBar.close()
     return foundedTokens,errorChars
 
-def wordCounter(tokensList):
+def wordCounter(tokensList,verbose=):
     '''
     returns Term Frequency of tokens
     Returns:
