@@ -33,6 +33,7 @@ def wordTokenizer(text,tokensMap=tokensMap,Normalizer=Normalize,verbose=0):
     allTokens=[]
     allErrorChars=[]
     if verbose:
+        print()
         for subText in tqdm(textlst,desc="wordTokenizer"):
             tmp=wordTokenizer_(subText,tokensMap=tokensMap,Normalizer=Normalize,verbose=0)
             allTokens+=tmp[0]
@@ -103,7 +104,7 @@ def wordTokenizer_(text,tokensMap=tokensMap,Normalizer=Normalize,verbose=0):
         progressBar.close()
     return foundedTokens,errorChars
 
-def wordCounter(tokensList,verbose=):
+def wordCounter(tokensList,verbose=0):
     '''
     returns Term Frequency of tokens
     Returns:
@@ -111,6 +112,12 @@ def wordCounter(tokensList,verbose=):
                 { <Token class>: <frequency int> }
     '''
     allwords={}
-    for word in tokensList:
-        allwords[word]=allwords.get(word,0)+1
+    if verbose:
+        print()
+        for word in tqdm(tokensList,desc="wordCounter"):
+            allwords[word]=allwords.get(word,0)+1
+    else:
+        for word in tokensList:
+            allwords[word]=allwords.get(word,0)+1
+
     return allwords
