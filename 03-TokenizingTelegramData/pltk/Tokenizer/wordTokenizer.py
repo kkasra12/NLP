@@ -77,7 +77,7 @@ def wordTokenizer_(text,tokensMap=tokensMap,Normalizer=Normalize,verbose=0):
         # if 'twitter' in tmp:
         #     print(tmp)
         for tokName,tokRegex in tokensMap.items():
-            if fullmatch(tokRegex,tmp):
+            if tokRegex.fullmatch(tmp):
                 foundedTokens.append(Token(tokName,
                                            tmp,
                                            tokRegex,

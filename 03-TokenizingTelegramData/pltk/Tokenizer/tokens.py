@@ -1,5 +1,5 @@
 from string import  punctuation
-from re import findall,sub
+from re import findall,compile
 from os import chdir
 from os.path import dirname,join
 DIRNAME=dirname(__file__)
@@ -40,6 +40,9 @@ tokensMap={"PUNCTUATION"        :rf'[!"#$%&\'()*+,\-./:;≈❗️,«»<=>?@\[\\\
            "SPACE"              :" ",
            "TAB"                :r"\t"
         }
+
+for title in tokensMap:
+    tokensMap[title]=compile(tokensMap[title])
 
 
 class Token:
