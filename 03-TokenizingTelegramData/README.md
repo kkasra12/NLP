@@ -6,7 +6,7 @@ The tokenizer uses this regexes to find the tokens:
 
 | TokenLabel | Regex |
 | :------------- | :------------- |
-|PUNCTUATION"         |<code>r'[!"#$%&\\\'()*+,\\-./:;≈❗️,«»<=>?@\\[\\\\\\]\\^_`\|~،”“.×⋅′−–؛؛؟{}…]'</code>
+|PUNCTUATION"         |```r'[!"#$%&\\\'()*+,\\-./:;≈❗️,«»<=>?@\\[\\\\\\]\\^_`\|~،”“.×⋅′−–؛؛؟{}…]'```
 |"EMOJI"              |`"["+open(join(DIRNAME,"./emojies")).read().replace("\n","")+"]"`
 |"IP"                 |`r"\d\.\d\.\d\.\d"`
 |"NUMBER"             |<code>r"(?:\d+(?:(?:\.\d+)|\.)?)|(?:\.\d+)\"</code>
@@ -14,8 +14,8 @@ The tokenizer uses this regexes to find the tokens:
 |"ENGLISH_WORD"       |`r"[A-Za-z]+(?:\'[a-z]+)?"`
 |"SENTENCE_DELIMITERS"|`r"[.?!؟]"`
 |"ENGLISH_HUMAN_NAME" |`r"(?:(?i)mr\|mis\|miss)\.[A-Za-z][a-z]+"`
-|"EMAIL"              |`r"[a-zA-Z0-9.!#$%&'*+\/=?^_{\|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]+[a-zA-Z0-9])?\.[a-zA-Z0-9](?:[a-zA-Z0-9-]+[a-zA-Z0-9])?"`
-|"LINK"               |`r"(?:https?:\/\/)?(?:www\.)?(?:[a-zA-Z0-9][-a-zA-Z0-9%_\+~#=]*\.)+[a-zA-Z][a-zA-Z0-9]{0,6}(?:/[a-zA-Z0-9_%+=~\-]+\.)*(?:#(?:[a-zA-Z][a-zA-Z0-9]+=[a-z-Z0-9]*,)*(?:[a-zA-Z][a-zA-Z0-9]+=[a-zA-Z0-9]*))?"`
+|"EMAIL"              |```r"[a-zA-Z0-9.!#$%&'*+\/=?^_{\|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]+[a-zA-Z0-9])?\.[a-zA-Z0-9](?:[a-zA-Z0-9-]+[a-zA-Z0-9])?"```|
+|"LINK"               |```r"(?:https?:\/\/)?(?:www\d?\.)?(?:[a-zA-Z0-9][-a-zA-Z0-9%_\+~#=]*\.)+[a-zA-Z][a-zA-Z0-9]{0,6}(?:/[a-zA-Z0-9_%+=~\-#@]+(?:\.[a-zA-Z0-9_%+=~\-@]+)*)*\/?(?:\?(?:[a-zA-Z][a-zA-Z0-9]*=[a-zA-Z0-9+\.\-%]*&)*(?:[a-zA-Z][a-zA-Z0-9]*=[a-zA-Z0-9+\.\-%]*))?"```|
 |"GREEL_LETTERS"      |`"[ΑαΒβΓγŋΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσΤτΥυΦφΧχΨψΩω∑∈]"`
 |"DEGREE"             |`r"(\d+°C)\|(\d+°F)"`
 |"LEFT_TO_RIGHT_MARK "|`"\u200e"`
