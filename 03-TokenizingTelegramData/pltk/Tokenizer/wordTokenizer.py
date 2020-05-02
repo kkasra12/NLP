@@ -12,17 +12,30 @@ for line in NormalizerFile:
     key,value=line.split("->")
     value=value.replace("\n","")
     for char in key:
-        assert char not in NormalizerMap, "duplicated character found!!!"
+        assert char not in NormalizerMap, f"duplicated character in normalizerData detected:{char} {ord(char)}"
         NormalizerMap.update({char:value})
+for sound in persianSounds:
+    assert sound not in NormalizerMap
+    NormalizerMap.update({sound:''})
+NormalizerMap.update({"\u2063":','}) # INVISIBLE SEPARATOR
+NormalizerMap.update({"\u2067":'\u200f'}) # RIGHT-TO-LEFT ISOLATE -> RIGHT_TO_LEFT_MARK
+## convertoin of non-breaking spaces
+for i in '\u200d\ufeff\u00a0':
+    NormalizerMap.update({i:'\u200c'})
 
-Normalize=lambda text,NormalizerMap=NormalizerMap:sub(persianSounds,"","".join(NormalizerMap.get(i,i) for i in text))
+
+# Normalize=lambda text,NormalizerMap=NormalizerMap:sub(persianSounds,"","".join(NormalizerMap.get(i,i) for i in text))
+Normalize=lambda text,NormalizerMap=NormalizerMap:"".join(NormalizerMap.get(i,i) for i in text)
 
 def textSpliter(t):
     '''
     an internal function which gives text until the nearest space character.
     its used to reduce the execution time.
     '''
-    spaceIndex=t.find(" ")+1
+    if t and t[0]==' ':
+        spaceIndex=1
+    else:
+        spaceIndex=t.find(" ")
     if spaceIndex:
         return (t[:spaceIndex],t[spaceIndex:])
     else:

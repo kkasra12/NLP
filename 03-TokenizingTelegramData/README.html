@@ -42,7 +42,7 @@
 </tr>
 <tr class="odd">
 <td align="left">&quot;PERSIAN_WORD&quot;</td>
-<td align="left"><code>f&quot;[{persianLetters}]+[{persianLetters}\u200c\u200d]*[{persianLetters}]+&quot;</code></td>
+<td align="left"><code>f&quot;[{persianLetters}][{persianLetters}\u200c]*[{persianLetters}]|[{persianLetters}]&quot;</code></td>
 </tr>
 <tr class="even">
 <td align="left">&quot;ENGLISH_WORD&quot;</td>
@@ -116,6 +116,10 @@
 <tr class="odd">
 <td align="left">&quot;LEFT_TO_RIGHT_MARK &quot;</td>
 <td align="left"><code>&quot;\u200e&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">&quot;RIGHT_TO_LEFT_MARK  &quot;</td>
+<td align="left"><code>&quot;\u200f&quot;</code></td>
 </tr>
 <tr class="even">
 <td align="left">&quot;NEW_LINE&quot;</td>
@@ -208,19 +212,27 @@
 <td align="left">ﻕ</td>
 </tr>
 <tr class="odd">
-<td align="left">ٱٳٵٲأإﺍ</td>
+<td align="left">ﺎٱٳٵٲأإﺍ</td>
 <td align="left">ا</td>
 </tr>
 <tr class="even">
-<td align="left">ۊۉۋۆۮۈۅۇۄٶۏٷ</td>
-<td align="left">ﻭ</td>
+<td align="left">ﺁ</td>
+<td align="left">آ</td>
 </tr>
 <tr class="odd">
+<td align="left">ﻭﻮۊۉۋۆۮۈۅۇۄٶۏٷ</td>
+<td align="left">ﻭ</td>
+</tr>
+<tr class="even">
 <td align="left">ٹٿ</td>
 <td align="left">ﺙ</td>
 </tr>
+<tr class="odd">
+<td align="left">ﺒﺐﺑ</td>
+<td align="left">ب</td>
+</tr>
 <tr class="even">
-<td align="left">ټٺٽ</td>
+<td align="left">ﺘﺕﺖﺗټٺٽ</td>
 <td align="left">ﺕ</td>
 </tr>
 <tr class="odd">
@@ -232,7 +244,7 @@
 <td align="left">ﺡ</td>
 </tr>
 <tr class="odd">
-<td align="left">څڂڿﺥ</td>
+<td align="left">ﺧڅڂڿﺥ</td>
 <td align="left">خ</td>
 </tr>
 <tr class="even">
@@ -240,75 +252,91 @@
 <td align="left">ﭺ</td>
 </tr>
 <tr class="odd">
-<td align="left">ڄڇ</td>
+<td align="left">ﺝﺠڄڇ</td>
 <td align="left">ﺝ</td>
 </tr>
 <tr class="even">
-<td align="left">ڈډڍڊ</td>
-<td align="left">ﺩ</td>
+<td align="left">ﺢﺣ</td>
+<td align="left">ح</td>
 </tr>
 <tr class="odd">
+<td align="left">ﺪﺩڈډڍڊ</td>
+<td align="left">ﺩ</td>
+</tr>
+<tr class="even">
 <td align="left">ڌڎڋڏڐ</td>
 <td align="left">ﺫ</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ڙڒﮊڑ</td>
 <td align="left">ﮊ</td>
 </tr>
-<tr class="odd">
-<td align="left">ږڕڔړ</td>
+<tr class="even">
+<td align="left">ﺮﺭږڕڔړ</td>
 <td align="left">ﺭ</td>
 </tr>
-<tr class="even">
-<td align="left">ۯڗ</td>
+<tr class="odd">
+<td align="left">ﺯﺰۯڗ</td>
 <td align="left">ﺯ</td>
 </tr>
-<tr class="odd">
-<td align="left">ښڛ</td>
+<tr class="even">
+<td align="left">ﺱﺳﺴښڛ</td>
 <td align="left">ﺱ</td>
 </tr>
-<tr class="even">
-<td align="left">ۺڜﺵ</td>
+<tr class="odd">
+<td align="left">ﺷﺸۺڜﺵ</td>
 <td align="left">ش</td>
 </tr>
-<tr class="odd">
-<td align="left">ڝۻ</td>
+<tr class="even">
+<td align="left">ﺹﺻڝۻ</td>
 <td align="left">ﺹ</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ڞ</td>
 <td align="left">ﺽ</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ڟ</td>
 <td align="left">ﻁ</td>
 </tr>
-<tr class="even">
-<td align="left">ڠۼ</td>
+<tr class="odd">
+<td align="left">ﻍﻏڠۼ</td>
 <td align="left">ﻍ</td>
 </tr>
+<tr class="even">
+<td align="left">ﻋﻌ</td>
+<td align="left">ع</td>
+</tr>
 <tr class="odd">
-<td align="left">ڣڦڡڢڥڤ</td>
+<td align="left">ﻑﻓڣڦڡڢڥڤ</td>
 <td align="left">ﻑ</td>
 </tr>
 <tr class="even">
-<td align="left">ػګؼڮڭڪڬﮎ</td>
+<td align="left">ﻕ</td>
+<td align="left">ق</td>
+</tr>
+<tr class="odd">
+<td align="left">ﮐػګؼڮڭڪڬﮎ</td>
 <td align="left">ک</td>
 </tr>
-<tr class="odd">
-<td align="left">ڴڰڲﮒڱڳ</td>
+<tr class="even">
+<td align="left">ﮔڴڰڲﮒڱڳ</td>
 <td align="left">ﮒ</td>
 </tr>
-<tr class="even">
-<td align="left">ڸڷڶڵ</td>
+<tr class="odd">
+<td align="left">ﻝﻞﻠڸڷڶڵ</td>
 <td align="left">ﻝ</td>
 </tr>
-<tr class="odd">
-<td align="left">ڹڻںڼڽ</td>
+<tr class="even">
+<td align="left">ﻧﻨﻥڹڻںڼڽ</td>
 <td align="left">ﻥ</td>
 </tr>
+<tr class="odd">
+<td align="left">ﻄ</td>
+<td align="left">ط</td>
+</tr>
 <tr class="even">
-<td align="left">ەۂہۀۃھۿﻩ</td>
+<td align="left">ﻬﻪﻫەۂہۀۃھۿﻩ</td>
 <td align="left">ه</td>
 </tr>
 <tr class="odd">
@@ -316,23 +344,48 @@
 <td align="left">ﻉ</td>
 </tr>
 <tr class="even">
+<td align="left">ﻤﻢﻣ</td>
+<td align="left">م</td>
+</tr>
+<tr class="odd">
 <td align="left">ۜ۩ۣۡۖ۬ۢ۞۠ۚۥۤۛ۝ۧۘۦۭ۪ۗ۫ۨ۟ۙ</td>
 <td align="left">_</td>
 </tr>
-<tr class="odd">
-<td align="left">یۍېےۓێؽﻱؠۑؾؿٸﻯﺉﯼيئ</td>
+<tr class="even">
+<td align="left">ﯾﯽﯿیۍېےۓێؽﻱؠۑؾؿٸﻯﺉﯼيئى</td>
 <td align="left">ی</td>
 </tr>
-<tr class="even">
-<td align="left">ـ</td>
+<tr class="odd">
+<td align="left">—ـ</td>
 <td align="left">_</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">،</td>
 <td align="left">,</td>
 </tr>
+<tr class="odd">
+<td align="left">&quot;\u2063&quot;<br>(INVISIBLE SEPARATOR)</td>
+<td align="left">,</td>
+</tr>
+<tr class="even">
+<td align="left">&quot;\u2067&quot;<br>(RIGHT-TO-LEFT ISOLATE)</td>
+<td align="left">&quot;\u200f&quot;<br>(RIGHT_TO_LEFT_MARK)</td>
+</tr>
+<tr class="odd">
+<td align="left">'\u200d'</td>
+<td align="left">'\u200c'</td>
+</tr>
+<tr class="even">
+<td align="left">'\ufeff'</td>
+<td align="left">'\u200c'</td>
+</tr>
+<tr class="odd">
+<td align="left">'\u00a0'</td>
+<td align="left">'\u200c'</td>
+</tr>
 </tbody>
 </table>
+<br>
 <br>
 <br>
 <br>
@@ -373,7 +426,7 @@
 <p>The data extracted from telegram channels contains 21217 lines and 5258018 characters(this numbers are reported by <a href="https://linux.die.net/man/1/wc">wc command</a>)</p>
 <p>the <code>runme.py</code> program tokenize the the these data and counts the frequency of each token.All tokens are stored in <code>tokensCount.xlsx</code> file and the output is:</p>
 <pre><code>$ python3 runme.py
-wordTokenizer: 100%|█████████████████████| 21218/21218 [00:54&lt;00:00, 385.92it/s]
+wordTokenizer: 100%|█████████████████████| 21218/21218 [00:35&lt;00:00, 597.51it/s]
 
 wordCounter: 100%|████████████████| 1976270/1976270 [00:03&lt;00:00, 622662.52it/s]
 tokenizerFinished...
@@ -390,10 +443,10 @@ tokenizerFinished...
 &lt;TOKEN type:EMOJI pos:(93, 94)&gt;,[🥈]                EMOJI    🥈              3
 &lt;TOKEN type:EMOJI pos:(103, 104)&gt;,[🥉]              EMOJI    🥉              3
 
-[34022 rows x 3 columns]
+[33763 rows x 3 columns]
 </code></pre>
-<p>As you can see the output contains 34022 unique tokens also the labels and term frequencies are specified.</p>
-<p>The program used 54 seconds for the calculation and 3 seconds for counting the tokens.</p>
+<p>As you can see the output contains 33763 unique tokens also the labels and term frequencies are specified in `tokensCount.xlsx`.</p>
+<p>The program used 35 seconds for the tokenizing and 3 seconds for counting the tokens frequency.</p>
 <h1 id="calculating-tf-idf">calculating TF-IDF</h1>
 <h2 id="codes">Codes</h2>
 <h3 id="tokenizer-1">Tokenizer</h3>
