@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
+</head>
+<body>
+<h1 id="calculating-tf-idf">calculating TF-IDF</h1>
+<h2 id="codes">Codes</h2>
+<h3 id="tokenizer">Tokenizer</h3>
+<p>the tokenizer is descriped in last project</p>
+<h3 id="tfdocumentsoutputformatsparsematrix">TF(documents,outputFormat='sparseMatrix')</h3>
+<ul>
+<li><strong>Parameters:</strong> documents: string, list an string contains a folder name of corpus or list of documents outputFormat: string 'sparseMatrix' or 'pandas_DataFrame'</li>
+<li><strong>Returns:</strong><br> an sparse matrix or <code>pandas.DataFrame</code> object of term frequency calculated.</li>
+</ul>
+<p>In order to calculate the TF of the documents, several steps are taken as descriped below: - Fistly, each file will be opened and read using <code>open</code> module. - Secondly, the data extracted from files are passed to <code>tokenizer.wordTokenizer</code> which is implemented in the previous assignment.this step will convert the text into the list of tokens. - In the third step,the list of tokens are passed to <code>tokenizer.wordCounter</code> in order to count the frequency of each token in the current document. This finction is also implemented in the previous assignment. The output will be a <code>dict</code> object which maps tokens into their frequency. - As the next step, The last calculated dictionary is stored as the value of another dictionary. This nested dictionary structures is forming a sparse matrix which saves more space than regular matrix. - Finally, the function will return the output matrix as <code>pandas.DataFrame</code> if needed.</p>
+<h3 id="dfdocumentsoutputformatsparsematrix">DF(documents,outputFormat='sparseMatrix')</h3>
+<ul>
+<li><p><strong>Parameters:</strong> documents: string, list an string contains a folder name of corpus or list of documents outputFormat: string 'sparseMatrix' or 'pandas_DataFrame'</p></li>
+<li><p><strong>Returns:</strong> <br> map of tokens to their DocumentFrequency of <code>pandas.DataFrame</code></p></li>
+</ul>
+<p>In order to calculate the DF of the documents, several steps are taken as descriped below: - Fistly, each file will be opened and read using <code>open</code> module. - Secondly, the data extracted from files are passed to <code>tokenizer.wordTokenizer</code> which is implemented in the previous assignment.this step will convert the text into the list of tokens. - In the third step, the frequency of each token will increase by one value if that token is in the current document. - Finally, the function will return the output matrix as <code>pandas.DataFrame</code> if needed.</p>
+<h3 id="tf_idftf_matdf_matoutputformatsparsematrix">TF_IDF(TF_mat,DF_mat,outputFormat='sparseMatrix')</h3>
+<ul>
+<li><p>Parameters:</p>
+<pre><code>TF_mat:
+the output of TF function
+DF_mat:
+the output of DF or DF_fromTF function
+outputFormat: string
+&#39;sparseMatrix&#39; or &#39;pandas_DataFrame&#39;</code></pre></li>
+<li><p>Returns: <br> an sparse matrix or <code>pandas.DataFrame</code> object of TF-IDF calculated.</p></li>
+</ul>
+<p>Having TF and DF will makes calculation of the TF-IDF pretty easy. simply each row of the TF matrix is divided by the corresponding term in the DF matrix.</p>
+<h3 id="calculate-df-matrix-using-tf-matrix">calculate DF matrix using TF matrix</h3>
+<p>ther is another faster way to calculate DF matrix and that is using TF matrix.To do so,number of non-zero values will be count in each line of the TF matrix. This operation is incredibly fast using <code>pandas.DataFrame</code>: - First: divide the TF matrix by itself - Second: add numbers in each line and save the answer as the DocumentFrequency of terms.</p>
+<h2 id="test">Test</h2>
+<p>There is two test corpus available: - CorpusSmall: contains two small files types by my self just to test the outputs. - CorpusBig: contains 150 file which each files has 16 lines.</p>
+<h2 id="output">Output</h2>
+<p>there is brief information in standard output containing execution time and small view of the matrixes.</p>
+<h3 id="execution-time">Execution Time:</h3>
+<pre><code>The TF matrix is calculated in 4.823282718658447
+
+The DF matrix is calculated in 0.007876873016357422
+
+The TF-IDF matrix is calculated in 0.15381646156311035</code></pre>
+<p>obviously calculating the TF requires the hard drive file access, which makes it slowly.</p>
+<h3 id="saved-files">Saved Files</h3>
+<p>There is three saved files <code>tf.xlsx</code>, <code>df.xlsx</code>, <code>tf_idf.xlsx</code>.(their names are clear enough to decribe their contents)</p>
+<h4 id="tf.xlsx">tf.xlsx</h4>
+<p>5045 rows x 150 columns rows contains tokens. columns contains documents.</p>
+<h4 id="df.xlsx">DF.xlsx</h4>
+<p>5046 tokens are found and sorted.</p>
+<h4 id="tf_idf.xlsx">tf_idf.xlsx</h4>
+<p>5045 rows x 150 columns rows contains tokens. columns contains documents.</p>
+</body>
+</html>
