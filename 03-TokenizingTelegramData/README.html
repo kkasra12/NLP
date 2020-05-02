@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
+</head>
+<body>
+<h1 id="tokenizer">Tokenizer</h1>
+<h2 id="regex">Regex</h2>
+<p>The tokenizer uses this regexes to find the tokens:</p>
+<table style="width:42%;">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">TokenLabel</th>
+<th align="left">Regex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">PUNCTUATION&quot;</td>
+<td align="left"><code>r'[!&quot;#$%&amp;\\\'()*+,\\-./:;≈❗️,«»&lt;=&gt;?@\\[\\\\\\]\\^_`\|~،”“.×⋅′−–؛؛؟{}…]'</code></td>
+</tr>
+<tr class="even">
+<td align="left">&quot;EMOJI&quot;</td>
+<td align="left"><code>&quot;[&quot;+open(join(DIRNAME,&quot;./emojies&quot;)).read().replace(&quot;\n&quot;,&quot;&quot;)+&quot;]&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">&quot;IP&quot;</td>
+<td align="left"><code>r&quot;\d\.\d\.\d\.\d&quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left">&quot;NUMBER&quot;</td>
+<td align="left"><code>r&quot;(?:+(?:(?:.+)</td>
+</tr>
+<tr class="odd">
+<td align="left">&quot;PERSIAN_WORD&quot;</td>
+<td align="left"><code>f&quot;[{persianLetters}]+[{persianLetters}\u200c\u200d]*[{persianLetters}]+&quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left">&quot;ENGLISH_WORD&quot;</td>
+<td align="left"><code>r&quot;[A-Za-z]+(?:\'[a-z]+)?&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">&quot;SENTENCE_DELIMITERS&quot;</td>
+<td align="left"><code>r&quot;[.?!؟]&quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left">&quot;ENGLISH_HUMAN_NAME&quot;</td>
+<td align="left"><code>r&quot;(?:(?i)mr\|mis\|miss)\.[A-Za-z][a-z]+&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">&quot;EMAIL&quot;</td>
+<td align="left"><pre style="border-radius:20px;"><code>r&quot;[a-zA-Z0-9.!#$%&amp;'*+\/=?^_{\|}~-]+
+  @
+  (?:
+    [a-zA-Z0-9]
+    [-a-zA-Z0-9%_\+~#=]*
+    \.
+  )+
+  [a-zA-Z]
+  [a-zA-Z0-9]{0,6}&quot;</code></pre></td>
+</tr>
+<tr class="even">
+<td align="left">&quot;LINK&quot;</td>
+<td align="left"><pre style="border-radius:20px;"><code>r&quot;(?:https?:\/\/)?
+  (?:www\d?\.)?
+  (?:
+    [a-zA-Z0-9]
+    [-a-zA-Z0-9%_\+~#=]*
+    \.
+  )+
+  [a-zA-Z]
+  [a-zA-Z0-9]{0,6}
+  (?:
+    /
+    [a-zA-Z0-9_%+=~\-#@]+
+    (?:
+      \.
+      [a-zA-Z0-9_%+=~\-@]+
+    )*
+  )*
+  \/?
+  (?:
+    \?
+    (?:
+      [a-zA-Z]
+      [a-zA-Z0-9]*
+      =
+      [a-zA-Z0-9+\.\-%]*
+      &amp;
+    )*
+    (?:
+      [a-zA-Z]
+      [a-zA-Z0-9]*
+      =
+      [a-zA-Z0-9+\.\-%]*
+    )
+  )?&quot;</code></pre></td>
+</tr>
+<tr class="odd">
+<td align="left">&quot;GREEL_LETTERS&quot;</td>
+<td align="left"><code>&quot;[ΑαΒβΓγŋΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσΤτΥυΦφΧχΨψΩω∑∈]&quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left">&quot;DEGREE&quot;</td>
+<td align="left"><code>r&quot;(\d+°C)\|(\d+°F)&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">&quot;LEFT_TO_RIGHT_MARK &quot;</td>
+<td align="left"><code>&quot;\u200e&quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left">&quot;NEW_LINE&quot;</td>
+<td align="left"><code>r&quot;\n&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">&quot;SPACE&quot;</td>
+<td align="left"><code>&quot; &quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left">&quot;TAB&quot;</td>
+<td align="left"><code>r&quot;\t&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<br>
+<blockquote>
+<p>emojies are stored in a file named <code>emojies</code> which is available in <a href="./pltk/Tokenizer/emojies" class="uri">./pltk/Tokenizer/emojies</a></p>
+</blockquote>
+<blockquote>
+<p>persianLetters is a variable which contains all of the persian letters</p>
+</blockquote>
+<blockquote>
+<p>DOT OPERATOR' (U+22C5) ==&gt; ⋅ ,PRIME (U+2032) ==&gt; ′ ,MINUS SIGN (U+2212) ==&gt; − ,EN DASH (U+2013) ==&gt; – ,ARABIC SEMICOLON' (U+061B) ,arabic question mark (U+061F) ,FUNCTION APPLICATION (U+2061) are also supported as <code>PUNCTUATION</code></p>
+</blockquote>
+<h2 id="normalizer">Normalizer</h2>
+<p>the normalizer conversions are described bellow:<br> <strong>The characters in column A converts to characters in column B</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">A</th>
+<th align="left">B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">١</td>
+<td align="left">۱</td>
+</tr>
+<tr class="even">
+<td align="left">٢</td>
+<td align="left">۲</td>
+</tr>
+<tr class="odd">
+<td align="left">٣</td>
+<td align="left">۳</td>
+</tr>
+<tr class="even">
+<td align="left">٤</td>
+<td align="left">۴</td>
+</tr>
+<tr class="odd">
+<td align="left">٥</td>
+<td align="left">۵</td>
+</tr>
+<tr class="even">
+<td align="left">٦</td>
+<td align="left">۶</td>
+</tr>
+<tr class="odd">
+<td align="left">٧</td>
+<td align="left">۷</td>
+</tr>
+<tr class="even">
+<td align="left">٨</td>
+<td align="left">۸</td>
+</tr>
+<tr class="odd">
+<td align="left">٩</td>
+<td align="left">۹</td>
+</tr>
+<tr class="even">
+<td align="left">٪</td>
+<td align="left">%</td>
+</tr>
+<tr class="odd">
+<td align="left">٫</td>
+<td align="left">.</td>
+</tr>
+<tr class="even">
+<td align="left">٬</td>
+<td align="left">٬</td>
+</tr>
+<tr class="odd">
+<td align="left">٭</td>
+<td align="left">*</td>
+</tr>
+<tr class="even">
+<td align="left">ٯڨڧ</td>
+<td align="left">ﻕ</td>
+</tr>
+<tr class="odd">
+<td align="left">ٱٳٵٲأإﺍ</td>
+<td align="left">ا</td>
+</tr>
+<tr class="even">
+<td align="left">ۊۉۋۆۮۈۅۇۄٶۏٷ</td>
+<td align="left">ﻭ</td>
+</tr>
+<tr class="odd">
+<td align="left">ٹٿ</td>
+<td align="left">ﺙ</td>
+</tr>
+<tr class="even">
+<td align="left">ټٺٽ</td>
+<td align="left">ﺕ</td>
+</tr>
+<tr class="odd">
+<td align="left">ڀﭖ</td>
+<td align="left">ﭖ</td>
+</tr>
+<tr class="even">
+<td align="left">ځ</td>
+<td align="left">ﺡ</td>
+</tr>
+<tr class="odd">
+<td align="left">څڂڿﺥ</td>
+<td align="left">خ</td>
+</tr>
+<tr class="even">
+<td align="left">۾ﭺڃ</td>
+<td align="left">ﭺ</td>
+</tr>
+<tr class="odd">
+<td align="left">ڄڇ</td>
+<td align="left">ﺝ</td>
+</tr>
+<tr class="even">
+<td align="left">ڈډڍڊ</td>
+<td align="left">ﺩ</td>
+</tr>
+<tr class="odd">
+<td align="left">ڌڎڋڏڐ</td>
+<td align="left">ﺫ</td>
+</tr>
+<tr class="even">
+<td align="left">ڙڒﮊڑ</td>
+<td align="left">ﮊ</td>
+</tr>
+<tr class="odd">
+<td align="left">ږڕڔړ</td>
+<td align="left">ﺭ</td>
+</tr>
+<tr class="even">
+<td align="left">ۯڗ</td>
+<td align="left">ﺯ</td>
+</tr>
+<tr class="odd">
+<td align="left">ښڛ</td>
+<td align="left">ﺱ</td>
+</tr>
+<tr class="even">
+<td align="left">ۺڜﺵ</td>
+<td align="left">ش</td>
+</tr>
+<tr class="odd">
+<td align="left">ڝۻ</td>
+<td align="left">ﺹ</td>
+</tr>
+<tr class="even">
+<td align="left">ڞ</td>
+<td align="left">ﺽ</td>
+</tr>
+<tr class="odd">
+<td align="left">ڟ</td>
+<td align="left">ﻁ</td>
+</tr>
+<tr class="even">
+<td align="left">ڠۼ</td>
+<td align="left">ﻍ</td>
+</tr>
+<tr class="odd">
+<td align="left">ڣڦڡڢڥڤ</td>
+<td align="left">ﻑ</td>
+</tr>
+<tr class="even">
+<td align="left">ػګؼڮڭڪڬﮎ</td>
+<td align="left">ک</td>
+</tr>
+<tr class="odd">
+<td align="left">ڴڰڲﮒڱڳ</td>
+<td align="left">ﮒ</td>
+</tr>
+<tr class="even">
+<td align="left">ڸڷڶڵ</td>
+<td align="left">ﻝ</td>
+</tr>
+<tr class="odd">
+<td align="left">ڹڻںڼڽ</td>
+<td align="left">ﻥ</td>
+</tr>
+<tr class="even">
+<td align="left">ەۂہۀۃھۿﻩ</td>
+<td align="left">ه</td>
+</tr>
+<tr class="odd">
+<td align="left">۽</td>
+<td align="left">ﻉ</td>
+</tr>
+<tr class="even">
+<td align="left">ۜ۩ۣۡۖ۬ۢ۞۠ۚۥۤۛ۝ۧۘۦۭ۪ۗ۫ۨ۟ۙ</td>
+<td align="left">_</td>
+</tr>
+<tr class="odd">
+<td align="left">یۍېےۓێؽﻱؠۑؾؿٸﻯﺉﯼيئ</td>
+<td align="left">ی</td>
+</tr>
+<tr class="even">
+<td align="left">ـ</td>
+<td align="left">_</td>
+</tr>
+<tr class="odd">
+<td align="left">،</td>
+<td align="left">,</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<h2 id="coding">Coding</h2>
+<p>The tokenizer function is available in <code>pltk.Tokenizer.wordTokenizer</code>.<br><br><br> <strong>Arguments:</strong><br></p>
+<table style="width:42%;">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Arguments</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">text</td>
+<td align="left"><code>string</code><br> a text to tokenize</td>
+</tr>
+<tr class="even">
+<td align="left">tokensMap</td>
+<td align="left"><code>dict</code> <em>optional</em><br>A dictionary in which <code>Tokens Labels</code> point to <code>compiled regex patterns</code>(e.g. <code>re.compile</code> output)<br><strong>default token map is described above</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">Normalizer</td>
+<td align="left"><code>function</code><em>optional</em><br>a function used for normalizing the text prior to tokenizing<br><strong>default normalizer is described above</strong></td>
+</tr>
+<tr class="even">
+<td align="left">verbose</td>
+<td align="left"><code>bool</code><em>optional</em><br>shows a progress bar if <code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p><br><strong>Returns:</strong><br> Returns two lists of <code>Token</code> class as detected tokens and characters which does not fit in any of the known regexes.</p>
+<h2 id="testing-tokenizer-on-telegram-data">Testing Tokenizer on Telegram Data</h2>
+<p>The data extracted from telegram channels contains 21217 lines and 5258018 characters(this numbers are reported by <a href="https://linux.die.net/man/1/wc">wc command</a>)</p>
+<p>the <code>runme.py</code> program tokenize the the these data and counts the frequency of each token.All tokens are stored in <code>tokensCount.xlsx</code> file and the output is:</p>
+<pre><code>$ python3 runme.py
+wordTokenizer: 100%|█████████████████████| 21218/21218 [00:54&lt;00:00, 385.92it/s]
+
+wordCounter: 100%|████████████████| 1976270/1976270 [00:03&lt;00:00, 622662.52it/s]
+tokenizerFinished...
+                                                    type text  termFrequency
+&lt;TOKEN type:SPACE pos:(4, 5)&gt;,[ ]                  SPACE              851769
+&lt;TOKEN type:PUNCTUATION pos:(191, 192)&gt;,[!]  PUNCTUATION    !           2569
+&lt;TOKEN type:PUNCTUATION pos:(35, 36)&gt;,[&quot;]    PUNCTUATION    &quot;           2200
+&lt;TOKEN type:PUNCTUATION pos:(3, 4)&gt;,[#]      PUNCTUATION    #           3509
+&lt;TOKEN type:PUNCTUATION pos:(238, 239)&gt;,[%]  PUNCTUATION    %             96
+...                                                  ...  ...            ...
+&lt;TOKEN type:EMOJI pos:(0, 1)&gt;,[🤼]                  EMOJI    🤼              1
+&lt;TOKEN type:EMOJI pos:(943, 944)&gt;,[🥀]              EMOJI    🥀              1
+&lt;TOKEN type:EMOJI pos:(85, 86)&gt;,[🥇]                EMOJI    🥇              3
+&lt;TOKEN type:EMOJI pos:(93, 94)&gt;,[🥈]                EMOJI    🥈              3
+&lt;TOKEN type:EMOJI pos:(103, 104)&gt;,[🥉]              EMOJI    🥉              3
+
+[34022 rows x 3 columns]
+</code></pre>
+<p>As you can see the output contains 34022 unique tokens also the labels and term frequencies are specified.</p>
+<p>The program used 54 seconds for the calculation and 3 seconds for counting the tokens.</p>
+<h1 id="calculating-tf-idf">calculating TF-IDF</h1>
+<h2 id="codes">Codes</h2>
+<h3 id="tokenizer-1">Tokenizer</h3>
+<p>the tokenizer is descriped in last project</p>
+<h3 id="tfdocumentsoutputformatsparsematrix">TF(documents,outputFormat='sparseMatrix')</h3>
+<ul>
+<li><strong>Parameters:</strong> documents: string, list an string contains a folder name of corpus or list of documents outputFormat: string 'sparseMatrix' or 'pandas_DataFrame'</li>
+<li><strong>Returns:</strong><br> an sparse matrix or <code>pandas.DataFrame</code> object of term frequency calculated.</li>
+</ul>
+<p>In order to calculate the TF of the documents, several steps are taken as descriped below: - Fistly, each file will be opened and read using <code>open</code> module. - Secondly, the data extracted from files are passed to <code>tokenizer.wordTokenizer</code> which is implemented in the previous assignment.this step will convert the text into the list of tokens. - In the third step,the list of tokens are passed to <code>tokenizer.wordCounter</code> in order to count the frequency of each token in the current document. This finction is also implemented in the previous assignment. The output will be a <code>dict</code> object which maps tokens into their frequency. - As the next step, The last calculated dictionary is stored as the value of another dictionary. This nested dictionary structures is forming a sparse matrix which saves more space than regular matrix. - Finally, the function will return the output matrix as <code>pandas.DataFrame</code> if needed.</p>
+<h3 id="dfdocumentsoutputformatsparsematrix">DF(documents,outputFormat='sparseMatrix')</h3>
+<ul>
+<li><p><strong>Parameters:</strong> documents: string, list an string contains a folder name of corpus or list of documents outputFormat: string 'sparseMatrix' or 'pandas_DataFrame'</p></li>
+<li><p><strong>Returns:</strong> <br> map of tokens to their DocumentFrequency of <code>pandas.DataFrame</code></p></li>
+</ul>
+<p>In order to calculate the DF of the documents, several steps are taken as descriped below: - Fistly, each file will be opened and read using <code>open</code> module. - Secondly, the data extracted from files are passed to <code>tokenizer.wordTokenizer</code> which is implemented in the previous assignment.this step will convert the text into the list of tokens. - In the third step, the frequency of each token will increase by one value if that token is in the current document. - Finally, the function will return the output matrix as <code>pandas.DataFrame</code> if needed.</p>
+<h3 id="tf_idftf_matdf_matoutputformatsparsematrix">TF_IDF(TF_mat,DF_mat,outputFormat='sparseMatrix')</h3>
+<ul>
+<li><p>Parameters:</p>
+<pre><code>TF_mat:
+the output of TF function
+DF_mat:
+the output of DF or DF_fromTF function
+outputFormat: string
+&#39;sparseMatrix&#39; or &#39;pandas_DataFrame&#39;</code></pre></li>
+<li><p>Returns: <br> an sparse matrix or <code>pandas.DataFrame</code> object of TF-IDF calculated.</p></li>
+</ul>
+<p>Having TF and DF will makes calculation of the TF-IDF pretty easy. simply each row of the TF matrix is divided by the corresponding term in the DF matrix.</p>
+<h3 id="calculate-df-matrix-using-tf-matrix">calculate DF matrix using TF matrix</h3>
+<p>ther is another faster way to calculate DF matrix and that is using TF matrix.To do so,number of non-zero values will be count in each line of the TF matrix. This operation is incredibly fast using <code>pandas.DataFrame</code>: - First: divide the TF matrix by itself - Second: add numbers in each line and save the answer as the DocumentFrequency of terms.</p>
+<h2 id="test">Test</h2>
+<p>There is two test corpus available: - CorpusSmall: contains two small files types by my self just to test the outputs. - CorpusBig: contains 150 file which each files has 16 lines.</p>
+<h2 id="output">Output</h2>
+<p>there is brief information in standard output containing execution time and small view of the matrixes.</p>
+<h3 id="execution-time">Execution Time:</h3>
+<pre><code>The TF matrix is calculated in 4.823282718658447
+
+The DF matrix is calculated in 0.007876873016357422
+
+The TF-IDF matrix is calculated in 0.15381646156311035</code></pre>
+<p>obviously calculating the TF requires the hard drive file access, which makes it slowly.</p>
+<h3 id="saved-files">Saved Files</h3>
+<p>There is three saved files <code>tf.xlsx</code>, <code>df.xlsx</code>, <code>tf_idf.xlsx</code>.(their names are clear enough to decribe their contents)</p>
+<h4 id="tf.xlsx">tf.xlsx</h4>
+<p>5045 rows x 150 columns rows contains tokens. columns contains documents.</p>
+<h4 id="df.xlsx">DF.xlsx</h4>
+<p>5046 tokens are found and sorted.</p>
+<h4 id="tf_idf.xlsx">tf_idf.xlsx</h4>
+<p>5045 rows x 150 columns rows contains tokens. columns contains documents.</p>
+</body>
+</html>
