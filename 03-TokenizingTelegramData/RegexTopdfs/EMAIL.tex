@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{tikz}
+\usepackage[margin=0.1in]{geometry}
+
+\begin{document}
+\title{EMAIL regex}
+\begin{center}
+\begin{tikzpicture}[scale=0.3]
+\draw [black] (7.2,-5.3) circle (3);
+\draw (7.2,-5.3) node {$Start$};
+\draw [black] (7.2,-16.6) circle (3);
+\draw (7.2,-16.6) node {$S_1$};
+\draw [black] (23.6,-16.6) circle (3);
+\draw (23.6,-16.6) node {$S_2$};
+\draw [black] (47.2,-16.6) circle (3);
+\draw (47.2,-16.6) node {$S_3$};
+\draw [black] (59.3,-16.6) circle (3);
+\draw (59.3,-16.6) node {$S_4$};
+\draw [black] (64.8,-31.5) circle (3);
+\draw (64.8,-31.5) node {$S_5$};
+\draw [black] (64.8,-31.5) circle (2.4);
+\draw [black] (7.2,-8.3) -- (7.2,-13.6);
+\fill [black] (7.2,-13.6) -- (7.7,-12.8) -- (6.7,-12.8);
+\draw (7.7,-10.95) node [right] {$[a-zA-Z0-9.!\#\$\%\&'*+\/=?\_\{\}~]$};
+\draw [black] (8.165,-19.428) arc (46.56859:-241.43141:2.25);
+\draw (5.96,-23.91) node [below] {$A$};
+\fill [black] (5.54,-19.09) -- (4.63,-19.32) -- (5.36,-20.01);
+\draw [black] (10.2,-16.6) -- (20.6,-16.6);
+\fill [black] (20.6,-16.6) -- (19.8,-16.1) -- (19.8,-17.1);
+\draw (15.4,-17.1) node [below] {$@$};
+\draw [black] (26.6,-16.6) -- (44.2,-16.6);
+\fill [black] (44.2,-16.6) -- (43.4,-16.1) -- (43.4,-17.1);
+\draw (35.4,-17.1) node [below] {$[a-zA-Z0-9]$};
+\draw [black] (45.877,-13.92) arc (234:-54:2.25);
+\draw (47.2,-9.35) node [above] {$[-a-zA-Z0-9\%_+~\#=]$};
+\fill [black] (48.52,-13.92) -- (49.4,-13.57) -- (48.59,-12.98);
+\draw [black] (50.2,-16.6) -- (56.3,-16.6);
+\fill [black] (56.3,-16.6) -- (55.5,-16.1) -- (55.5,-17.1);
+\draw (53.25,-17.1) node [below] {$.$};
+\draw [black] (57.449,-18.958) arc (-42.10904:-137.89096:21.566);
+\fill [black] (25.45,-18.96) -- (25.62,-19.89) -- (26.36,-19.22);
+\draw [black] (60.34,-19.41) -- (63.76,-28.69);
+\fill [black] (63.76,-28.69) -- (63.95,-27.76) -- (63.02,-28.11);
+\draw (61.29,-24.85) node [left] {$[a-zA-Z]$};
+\draw [black] (66.123,-34.18) arc (54:-234:2.25);
+\draw (64.8,-38.75) node [below] {$[a-zA-Z0-9]$};
+\fill [black] (63.48,-34.18) -- (62.6,-34.53) -- (63.41,-35.12);
+\end{tikzpicture}
+\end{center}
+
+\end{document}

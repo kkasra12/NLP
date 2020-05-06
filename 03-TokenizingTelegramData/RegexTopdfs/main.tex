@@ -1,0 +1,362 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage{tikz}
+\usepackage[margin=0.1in]{geometry}
+
+\title{Automata of Regexes Used in the Tokenizer}
+\author{Kasra Eskandari \and 955361005}
+\date{}
+\begin{document}
+\maketitle
+\begin{center}
+\section{LINK}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (4.4,-27.3) circle (3);
+\draw (4.4,-27.3) node {$Start$};
+\draw [black] (7.6,-6.9) circle (3);
+\draw (7.6,-6.9) node {$S_0$};
+\draw [black] (16,-3.2) circle (3);
+\draw (16,-3.2) node {$S_1$};
+\draw [black] (16,-11) circle (3);
+\draw (16,-11) node {$S_2$};
+\draw [black] (12.6,-19.8) circle (3);
+\draw (12.6,-19.8) node {$S_3$};
+\draw [black] (26.2,-14.5) circle (3);
+\draw (26.2,-14.5) node {$S_4$};
+\draw [black] (21.7,-28.4) circle (3);
+\draw (21.7,-28.4) node {$S_5$};
+\draw [black] (3.7,-38.4) circle (3);
+\draw (3.7,-38.4) node {$S_7$};
+\draw [black] (4.4,-47.4) circle (3);
+\draw (4.4,-47.4) node {$S_8$};
+\draw [black] (19.1,-49.8) circle (3);
+\draw (19.1,-49.8) node {$S_9$};
+\draw [black] (11.9,-33.8) circle (3);
+\draw (11.9,-33.8) node {$S_6$};
+\draw [black] (36,-49) circle (3);
+\draw (36,-49) node {$S_{10}$};
+\draw [black] (44.9,-43.3) circle (3);
+\draw (44.9,-43.3) node {$S_{11}$};
+\draw [black] (49.3,-52.2) circle (3);
+\draw (49.3,-52.2) node {$S_{12}$};
+\draw [black] (61.2,-54.4) circle (3);
+\draw (61.2,-54.4) node {$S_{13}$};
+\draw [black] (61.2,-54.4) circle (2.4);
+\draw [black] (55,-38.4) circle (3);
+\draw (55,-38.4) node {$S_{14}$};
+\draw [black] (49.3,-27.3) circle (3);
+\draw (49.3,-27.3) node {$S_{15}$};
+\draw [black] (30.9,-33.8) circle (3);
+\draw (30.9,-33.8) node {$S_{16}$};
+\draw [black] (37.7,-21.1) circle (3);
+\draw (37.7,-21.1) node {$S_{17}$};
+\draw [black] (80.3,-54.4) ellipse (7 and 3);
+\draw (80.3,-54.4) node {$HeaderData$};
+\draw [black] (53.9,-6.9) circle (3);
+\draw (53.9,-6.9) node {$S_{18}$};
+\draw [black] (58.1,-19.8) circle (3);
+\draw [black] (58.1,-19.8) circle (2.4);
+\draw (58.1,-19.8) node {$S_{19}$};
+\draw [black] (30.8,-6.1) ellipse (7 and 3);
+\draw (30.8,-6.1) node {$HeaderData$};
+\draw [black] (4.152,-24.311) arc (-177.54312:-200.28673:37.583);
+\fill [black] (6.45,-9.67) -- (5.7,-10.25) -- (6.64,-10.59);
+\draw (3.87,-16.67) node [left] {$http$};
+\draw [black] (9.52,-4.621) arc (128.47646:99.06824:7.537);
+\fill [black] (13.02,-3.08) -- (12.15,-2.71) -- (12.31,-3.7);
+\draw (10.3,-3.11) node [above] {$s$};
+\draw [black] (16,-6.2) -- (16,-8);
+\fill [black] (16,-8) -- (16.5,-7.2) -- (15.5,-7.2);
+\draw (16.5,-7.1) node [right] {$://$};
+\draw [black] (10.3,-8.22) -- (13.3,-9.68);
+\fill [black] (13.3,-9.68) -- (12.8,-8.88) -- (12.37,-9.78);
+\draw (10.48,-9.46) node [below] {$://$};
+\draw [black] (14.92,-13.8) -- (13.68,-17);
+\fill [black] (13.68,-17) -- (14.44,-16.44) -- (13.5,-16.08);
+\draw (13.55,-14.55) node [left] {$www$};
+\draw [black] (6.61,-25.28) -- (10.39,-21.82);
+\fill [black] (10.39,-21.82) -- (9.46,-22) -- (10.13,-22.73);
+\draw (11.18,-24.04) node [below] {$www$};
+\draw [black] (15.4,-18.71) -- (23.4,-15.59);
+\fill [black] (23.4,-15.59) -- (22.48,-15.41) -- (22.84,-16.35);
+\draw (20.61,-17.68) node [below] {$\texttt{\textbackslash}d$};
+\draw [black] (25.28,-17.35) -- (22.62,-25.55);
+\fill [black] (22.62,-25.55) -- (23.35,-24.94) -- (22.39,-24.63);
+\draw (24.72,-22.13) node [right] {$.$};
+\draw [black] (14.78,-21.86) -- (19.52,-26.34);
+\fill [black] (19.52,-26.34) -- (19.28,-25.43) -- (18.59,-26.15);
+\draw (16.38,-24.58) node [below] {$.$};
+\draw [black] (3.93,-41.39) -- (4.17,-44.41);
+\fill [black] (4.17,-44.41) -- (4.6,-43.57) -- (3.61,-43.65);
+\draw (3.66,-42.85) node [left] {$[a-zA-Z0-9]$};
+\draw [black] (6.127,-49.838) arc (63.04757:-224.95243:2.25);
+\draw (9.35,-55.46) node [below] {$[a-zA-Z0-9\%_+!~=\#]$};
+\fill [black] (3.52,-50.25) -- (2.71,-50.74) -- (3.6,-51.19);
+\draw [black] (7.36,-47.88) -- (16.14,-49.32);
+\fill [black] (16.14,-49.32) -- (15.43,-48.69) -- (15.27,-49.68);
+\draw (11.43,-49.17) node [below] {$.$};
+\draw [black] (19.07,-29.85) -- (14.53,-32.35);
+\fill [black] (14.53,-32.35) -- (15.47,-32.4) -- (14.99,-31.53);
+\draw [black] (6.67,-29.26) -- (9.63,-31.84);
+\fill [black] (9.63,-31.84) -- (9.36,-30.93) -- (8.7,-31.69);
+\draw [black] (9.28,-35.27) -- (6.32,-36.93);
+\fill [black] (6.32,-36.93) -- (7.26,-36.98) -- (6.77,-36.1);
+\draw [black] (6.337,-36.993) arc (109.49518:-2.51729:10.008);
+\fill [black] (6.34,-36.99) -- (7.26,-37.2) -- (6.92,-36.25);
+\draw [black] (22.1,-49.66) -- (33,-49.14);
+\fill [black] (33,-49.14) -- (32.18,-48.68) -- (32.23,-49.68);
+\draw (27.36,-48.72) node [above] {$[a-zA-Z]$};
+\draw [black] (34.175,-46.634) arc (245.37263:-42.62737:2.25);
+\draw (31.62,-41.41) node [above] {$[a-zA-Z0-9]$};
+\fill [black] (36.77,-46.11) -- (37.56,-45.59) -- (36.65,-45.18);
+\draw [black] (38.53,-47.38) -- (42.37,-44.92);
+\fill [black] (42.37,-44.92) -- (41.43,-44.93) -- (41.97,-45.77);
+\draw [black] (46.23,-45.99) -- (47.97,-49.51);
+\fill [black] (47.97,-49.51) -- (48.06,-48.57) -- (47.17,-49.02);
+\draw [black] (52.25,-52.75) -- (58.25,-53.85);
+\fill [black] (58.25,-53.85) -- (57.55,-53.22) -- (57.37,-54.2);
+\draw (54.86,-53.87) node [below] {$/$};
+\draw [black] (60.12,-51.6) -- (56.08,-41.2);
+\fill [black] (56.08,-41.2) -- (55.91,-42.12) -- (56.84,-41.76);
+\draw (58.85,-45.55) node [right] {$X=[a-zA-Z0-9_\%+=\#@]$};
+\draw [black] (56.621,-35.889) arc (174.89169:-113.10831:2.25);
+\draw (61.44,-33.67) node [right] {$X$};
+\fill [black] (57.98,-38.16) -- (58.73,-38.73) -- (58.82,-37.73);
+\draw [black] (53.63,-35.73) -- (50.67,-29.97);
+\fill [black] (50.67,-29.97) -- (50.59,-30.91) -- (51.48,-30.45);
+\draw [black] (46.47,-28.3) -- (33.73,-32.8);
+\fill [black] (33.73,-32.8) -- (34.65,-33.01) -- (34.32,-32.06);
+\draw (39.41,-30.03) node [above] {$.$};
+\draw [black] (32.32,-31.16) -- (36.28,-23.74);
+\fill [black] (36.28,-23.74) -- (35.47,-24.21) -- (36.35,-24.69);
+\draw (34.98,-28.62) node [right] {$x$};
+\draw [black] (35.486,-23.107) arc (-20.07637:-308.07637:2.25);
+\draw (30.44,-23.51) node [left] {$X$};
+\fill [black] (34.76,-20.56) -- (34.18,-19.82) -- (33.84,-20.76);
+\draw [black] (40.35,-22.51) -- (46.65,-25.89);
+\fill [black] (46.65,-25.89) -- (46.18,-25.07) -- (45.71,-25.95);
+\draw [black] (47.325,-41.538) arc (122.35942:109.40112:23.587);
+\fill [black] (47.33,-41.54) -- (48.27,-41.53) -- (47.73,-40.69);
+\draw [black] (50.67,-29.97) -- (53.63,-35.73);
+\fill [black] (53.63,-35.73) -- (53.71,-34.79) -- (52.82,-35.25);
+\draw [black] (64.2,-54.4) -- (73,-54.4);
+\fill [black] (73,-54.4) -- (72.5,-53.9) -- (72.5,-54.9);
+\draw (67.75,-54.9) node [below] {$?$};
+\draw [black] (55.705,-4.519) arc (170.56505:-117.43495:2.25);
+\draw (60.63,-2.77) node [right] {$[a-zA-Z0-9]$};
+\fill [black] (56.89,-6.88) -- (57.6,-7.51) -- (57.76,-6.52);
+\draw [black] (54.83,-9.75) -- (57.17,-16.95);
+\fill [black] (57.17,-16.95) -- (57.4,-16.03) -- (56.45,-16.34);
+\draw (55.23,-14.03) node [left] {$=$};
+\draw [black] (59.328,-17.076) arc (183.47246:-104.52754:2.25);
+\draw (63.87,-14.08) node [right] {$[a-zA-Z0-9]$};
+\fill [black] (61.01,-19.12) -- (61.84,-19.57) -- (61.78,-18.57);
+\draw [black] (38,-6.22) -- (50.9,-6.78);
+\fill [black] (50.9,-6.78) -- (50.12,-6.25) -- (50.08,-7.25);
+\draw (43.72,-7.16) node [below] {$[a-zA-Z]$};
+\draw [black] (55.234,-18.914) arc (-108.6313:-130.19609:58.887);
+\fill [black] (36.04,-8.09) -- (36.33,-8.99) -- (36.97,-8.23);
+\draw (43.85,-14.91) node [below] {$\&$};
+\end{tikzpicture}
+\end{center}
+\textbf{Also, mind this assignment:}
+
+$X=[a-zA-Z0-9_\%+=\#@]$
+
+
+
+\begin{center}
+\section{EMAIL}
+\begin{tikzpicture}[scale=0.3]
+\draw [black] (7.2,-5.3) circle (3);
+\draw (7.2,-5.3) node {$Start$};
+\draw [black] (7.2,-16.6) circle (3);
+\draw (7.2,-16.6) node {$S_1$};
+\draw [black] (23.6,-16.6) circle (3);
+\draw (23.6,-16.6) node {$S_2$};
+\draw [black] (47.2,-16.6) circle (3);
+\draw (47.2,-16.6) node {$S_3$};
+\draw [black] (59.3,-16.6) circle (3);
+\draw (59.3,-16.6) node {$S_4$};
+\draw [black] (64.8,-31.5) circle (3);
+\draw (64.8,-31.5) node {$S_5$};
+\draw [black] (64.8,-31.5) circle (2.4);
+\draw [black] (7.2,-8.3) -- (7.2,-13.6);
+\fill [black] (7.2,-13.6) -- (7.7,-12.8) -- (6.7,-12.8);
+\draw (7.7,-10.95) node [right] {$[a-zA-Z0-9.!\#\$\%\&'*+\/=?\_\{\}~]$};
+\draw [black] (8.165,-19.428) arc (46.56859:-241.43141:2.25);
+\draw (15,-23.91) node [below] {$[a-zA-Z0-9.!\#\$\%\&'*+\/=?\_\{\}~]$};
+\fill [black] (5.54,-19.09) -- (4.63,-19.32) -- (5.36,-20.01);
+\draw [black] (10.2,-16.6) -- (20.6,-16.6);
+\fill [black] (20.6,-16.6) -- (19.8,-16.1) -- (19.8,-17.1);
+\draw (15.4,-17.1) node [below] {$@$};
+\draw [black] (26.6,-16.6) -- (44.2,-16.6);
+\fill [black] (44.2,-16.6) -- (43.4,-16.1) -- (43.4,-17.1);
+\draw (35.4,-17.1) node [below] {$[a-zA-Z0-9]$};
+\draw [black] (45.877,-13.92) arc (234:-54:2.25);
+\draw (47.2,-9.35) node [above] {$[-a-zA-Z0-9\%_+~\#=]$};
+\fill [black] (48.52,-13.92) -- (49.4,-13.57) -- (48.59,-12.98);
+\draw [black] (50.2,-16.6) -- (56.3,-16.6);
+\fill [black] (56.3,-16.6) -- (55.5,-16.1) -- (55.5,-17.1);
+\draw (53.25,-17.1) node [below] {$.$};
+\draw [black] (57.449,-18.958) arc (-42.10904:-137.89096:21.566);
+\fill [black] (25.45,-18.96) -- (25.62,-19.89) -- (26.36,-19.22);
+\draw [black] (60.34,-19.41) -- (63.76,-28.69);
+\fill [black] (63.76,-28.69) -- (63.95,-27.76) -- (63.02,-28.11);
+\draw (61.29,-24.85) node [left] {$[a-zA-Z]$};
+\draw [black] (66.123,-34.18) arc (54:-234:2.25);
+\draw (64.8,-38.75) node [below] {$[a-zA-Z0-9]$};
+\fill [black] (63.48,-34.18) -- (62.6,-34.53) -- (63.41,-35.12);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\section{Persian Words}
+\begin{tikzpicture}[scale=0.3]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (39.2,-37) circle (3);
+\draw (39.2,-37) node {$Start$};
+\draw [black] (21,-37) circle (3);
+\draw (21,-37) node {$S_1$};
+\draw [black] (21,-37) circle (2.4);
+\draw [black] (39.2,-17.8) circle (3);
+\draw (39.2,-17.8) node {$S_2$};
+\draw [black] (36.2,-37) -- (24,-37);
+\fill [black] (24,-37) -- (24.8,-37.5) -- (24.8,-36.5);
+\draw (30.1,-37.5) node [below] {$persianLetters$};
+\draw [black] (39.2,-34) -- (39.2,-20.8);
+\fill [black] (39.2,-20.8) -- (38.7,-21.6) -- (39.7,-21.6);
+\draw (39.7,-27.4) node [right] {$persianLetters$};
+\draw [black] (37.451,-15.377) arc (243.55484:-44.44516:2.25);
+\draw (36.55,-10.32) node [above] {$\texttt{\textbackslash}u200C$};
+\fill [black] (40.06,-14.94) -- (40.86,-14.44) -- (39.97,-14);
+\draw [black] (41.005,-15.419) arc (170.56505:-117.43495:2.25);
+\draw (45.93,-13.67) node [right] {$persianLetters$};
+\fill [black] (42.19,-17.78) -- (42.9,-18.41) -- (43.06,-17.42);
+\draw [black] (37.14,-19.98) -- (23.06,-34.82);
+\fill [black] (23.06,-34.82) -- (23.98,-34.59) -- (23.25,-33.9);
+\draw (29.57,-25.93) node [left] {$persianLetters$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\section{English Words}
+\begin{tikzpicture}[scale=0.3]
+\draw [black] (13.1,-13.3) circle (3);
+\draw (13.1,-13.3) node {$Start$};
+\draw [black] (30,-13.3) circle (3);
+\draw (30,-13.3) node {$S_1$};
+\draw [black] (30,-13.3) circle (2.4);
+\draw [black] (43.5,-21.6) circle (3);
+\draw (43.5,-21.6) node {$S_2$};
+\draw [black] (55.8,-13.3) circle (3);
+\draw (55.8,-13.3) node {$S_3$};
+\draw [black] (16.1,-13.3) -- (27,-13.3);
+\fill [black] (27,-13.3) -- (26.2,-12.8) -- (26.2,-13.8);
+\draw (21.55,-13.8) node [below] {$[a-zA-Z]$};
+\draw [black] (30.742,-16.195) arc (42.11134:-245.88866:2.25);
+\draw (26.19,-20.75) node [below] {$[a-zA-Z]$};
+\fill [black] (28.15,-15.65) -- (27.23,-15.82) -- (27.9,-16.56);
+\draw [black] (32.56,-14.87) -- (40.94,-20.03);
+\fill [black] (40.94,-20.03) -- (40.52,-19.18) -- (40,-20.04);
+\draw (36.07,-17.95) node [below] {$'$};
+\draw [black] (45.99,-19.92) -- (53.31,-14.98);
+\fill [black] (53.31,-14.98) -- (52.37,-15.01) -- (52.93,-15.84);
+\draw (52.04,-17.95) node [below] {$[a-z]$};
+\draw [black] (55.393,-10.34) arc (215.56505:-72.43495:2.25);
+\draw (60.06,-6.31) node [above] {$[a-z]$};
+\fill [black] (57.9,-11.18) -- (58.84,-11.12) -- (58.26,-10.3);
+\draw [black] (52.8,-13.3) -- (33,-13.3);
+\fill [black] (33,-13.3) -- (33.8,-13.8) -- (33.8,-12.8);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\section{IP}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (6.4,-4.8) circle (3);
+\draw (6.4,-4.8) node {$Start$};
+\draw [black] (6.4,-16.6) circle (3);
+\draw (6.4,-16.6) node {$S_1$};
+\draw [black] (17.5,-16.5) circle (3);
+\draw (17.5,-16.5) node {$S_2$};
+\draw [black] (26.5,-16.5) circle (3);
+\draw (26.5,-16.5) node {$S_3$};
+\draw [black] (38.1,-16.5) circle (3);
+\draw (38.1,-16.5) node {$S_4$};
+\draw [black] (48,-16.5) circle (3);
+\draw (48,-16.5) node {$S_5$};
+\draw [black] (59.6,-16.4) circle (3);
+\draw (59.6,-16.4) node {$S_6$};
+\draw [black] (70.6,-16.4) circle (3);
+\draw (70.6,-16.4) node {$S_7$};
+\draw [black] (70.6,-25.5) circle (3);
+\draw (70.6,-25.5) node {$S_8$};
+\draw [black] (70.6,-36.7) circle (3);
+\draw (70.6,-36.7) node {$S_9$};
+\draw [black] (70.6,-36.7) circle (2.4);
+\draw [black] (6.4,-7.8) -- (6.4,-13.6);
+\fill [black] (6.4,-13.6) -- (6.9,-12.8) -- (5.9,-12.8);
+\draw [black] (9.4,-16.57) -- (14.5,-16.53);
+\fill [black] (14.5,-16.53) -- (13.7,-16.03) -- (13.7,-17.03);
+\draw (11.95,-17.06) node [below] {$\texttt{\textbackslash}d$};
+\draw [black] (20.5,-16.5) -- (23.5,-16.5);
+\fill [black] (23.5,-16.5) -- (22.7,-16) -- (22.7,-17);
+\draw (22,-17) node [below] {$.$};
+\draw [black] (29.5,-16.5) -- (35.1,-16.5);
+\fill [black] (35.1,-16.5) -- (34.3,-16) -- (34.3,-17);
+\draw (32.3,-17) node [below] {$\texttt{\textbackslash}d$};
+\draw [black] (41.1,-16.5) -- (45,-16.5);
+\fill [black] (45,-16.5) -- (44.2,-16) -- (44.2,-17);
+\draw (43.05,-17) node [below] {$.$};
+\draw [black] (51,-16.47) -- (56.6,-16.43);
+\fill [black] (56.6,-16.43) -- (55.8,-15.93) -- (55.8,-16.93);
+\draw (53.8,-16.96) node [below] {$\texttt{\textbackslash}d$};
+\draw [black] (62.6,-16.4) -- (67.6,-16.4);
+\fill [black] (67.6,-16.4) -- (66.8,-15.9) -- (66.8,-16.9);
+\draw (65.1,-16.9) node [below] {$.$};
+\draw [black] (70.6,-19.4) -- (70.6,-22.5);
+\fill [black] (70.6,-22.5) -- (71.1,-21.7) -- (70.1,-21.7);
+\draw (70.1,-20.95) node [left] {$\texttt{\textbackslash}d$};
+\draw [black] (70.6,-28.5) -- (70.6,-33.7);
+\fill [black] (70.6,-33.7) -- (71.1,-32.9) -- (70.1,-32.9);
+\draw (70.1,-31.1) node [left] {$.$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\section{English Human Name}
+\begin{tikzpicture}[scale=0.25]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (10.3,-14) circle (3);
+\draw (10.3,-14) node {$Start$};
+\draw [black] (31,-14) circle (3);
+\draw (31,-13.8) node {$S_1$};
+\draw [black] (44.4,-14) circle (3);
+\draw (44.4,-13.8) node {$S_2$};
+\draw [black] (59.2,-14) circle (3);
+\draw (59.2,-14) node {$S_3$};
+\draw [black] (72.7,-14) circle (3);
+\draw (72.7,-14) node {$S_4$};
+\draw [black] (11.558,-10.387) arc (147.10304:29.02336:10.717);
+\fill [black] (29.93,-11.01) -- (29.98,-10.07) -- (29.1,-10.55);
+\draw (20.96,-4.94) node [above] {$mr$};
+\draw [black] (29.933,-16.593) arc (-29.05415:-154.81945:10.543);
+\fill [black] (29.93,-16.59) -- (29.11,-17.05) -- (29.98,-17.54);
+\draw (20.31,-22.57) node [below] {$mis$};
+\draw [black] (13.3,-14) -- (28,-14);
+\fill [black] (28,-14) -- (27.22,-13.5) -- (27.19,-14.5);
+\draw (20.59,-14) node [below] {$miss$};
+\draw [black] (34,-14) -- (41.4,-14);
+\fill [black] (41.4,-14) -- (40.6,-13.5) -- (40.6,-14.5);
+\draw (37.7,-14) node [below] {$.$};
+\draw [black] (47.4,-14) -- (56.2,-14);
+\fill [black] (56.2,-14) -- (55.41,-13.5) -- (55.39,-14.5);
+\draw (51.77,-14.53) node [below] {$[A-Za-z]$};
+\draw [black] (62.2,-14) -- (69.7,-14);
+\fill [black] (69.7,-14) -- (68.92,-13.5) -- (68.92,-14.5);
+\draw (65.91,-14) node [below] {$[a-z]$};
+\end{tikzpicture}
+\end{center}
+\end{document}
