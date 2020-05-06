@@ -10,8 +10,9 @@ errorCharsFile.close()
 tokens=t[0]
 tokensCount=pd.DataFrame(tok.wordCounter(tokens,verbose=1),index=['termFrequency']).transpose()
 tokensCount['text']=[i.text for i in tokensCount.index]
+tokensCount['charCode']=[",".join(str(ord(c)) for c in i.text) for i in tokensCount.index]
 tokensCount['type']=[i.type for i in tokensCount.index]
-tokensCount=tokensCount[['type','text','termFrequency']].sort_values('text')
+tokensCount=tokensCount[['type','text','charCode','termFrequency']].sort_values('text')
 
 print("tokenizerFinished...")
 tokensCount.to_excel("tokensCount.xlsx")
