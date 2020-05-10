@@ -4,9 +4,18 @@ to calculate edit distance we need a large dataset, contains correct tokens.Also
 
 ## Terms Dataset
 
+### Smaller Dataset
+
 There is a large enough collection of correct terms in this [link](http://khodam.altervista.org/%D9%84%DB%8C%D8%B3%D8%AA-%D9%87%D9%85%D9%87-%DA%A9%D9%84%D9%85%D8%A7%D8%AA-%D9%81%D8%A7%D8%B1%D8%B3%DB%8C-%D9%85%D8%AC%D9%85%D9%88%D8%B9%D9%87-%DA%A9%D8%A7%D9%85%D9%84/) which is tokenized using my own **tokenizer** implemented in previous projects.<br>
 The output contains 21895 tokens which is stored in `pltk/WordProcesses/WordsDataset` (each tokens is separated using *newLine character*)
 
+### Extra Large Dataset
+(abadis dictionary)[https://dictionary.abadis.ir/fatofa/] has thousands of words which we can scrap them easily the code is implemented in `04-MakeADictionary/ScrapAbadisDictionary/runme.py`.
+this code is using `selenium` to send requests.This code has some perfect features such as:
+- because of rapid requests simultaneously the server will block the script's IP but the script will not terminate and will wait for the user to enter the capcha or change the IP address
+- Under any situation if code reruns it will remember the scraped pages and will continue scraping from the last page
+
+> NOTE: Since the dataset extracted from abadis dictionary is too large for our purpose, we will use smaller dataset.
 ## Levenshtein function
 
 The main levenshtein function is described completely in the class.
@@ -92,25 +101,27 @@ i.e. for `abcdef` and `bcwgf`
 simply run the `runme.py` code:
 ```bash
 python3 runme.py
-21895 tokens loaded...
-Please write your word: سپر
-your words seems to be wrong, did u mean: سپری or سپس or سر or پر or سپرد or سپهر or سوپر
+21896 tokens loaded...
+Please write your word: سبر
+your words seems to be wrong, did u mean: سپر or بر or سبک or سر or جبر or سبق or سبب
 
 
 
 calculating the time for other algorithms:
-levenshtein calcilation time : 0.85s
-words with one distance: ['سپری', 'سپس', 'سر', 'پر', 'سپرد', 'سپهر', 'سوپر'] and number of words whith 2 distance: 182
+levenshtein calcilation time : 0.78s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 250
 
-levenshtein_distanceLimiter calcilation time : 0.91s
-words with one distance: ['سپری', 'سپس', 'سر', 'پر', 'سپرد', 'سپهر', 'سوپر'] and number of words whith 2 distance: 182
+levenshtein_distanceLimiter calcilation time : 0.92s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 250
 
-levenshtein_recursion calcilation time : 1.21s
-words with one distance: ['سپری', 'سپس', 'سر', 'پر', 'سپرد', 'سپهر', 'سوپر'] and number of words whith 2 distance: 182
+levenshtein_recursion calcilation time : 1.29s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 250
 
-levenshtein_calculatingNecessaryCells calcilation time : 1.43s
-words with one distance: ['سپری', 'سپس', 'سر', 'پر', 'سپرد', 'سپهر', 'سوپر'] and number of words whith 2 distance: 182
+levenshtein_calculatingNecessaryCells calcilation time : 1.40s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 250
 
 levenshtein_GreedyBFS calcilation time : 0.20s
-words with one distance: ['سپری', 'سپس', 'سر', 'پر', 'سپرد', 'سپهر', 'سوپر'] and number of words whith 2 distance: 0
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 0
+
+
 ```
