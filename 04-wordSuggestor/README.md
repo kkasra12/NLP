@@ -16,6 +16,7 @@ this code is using `selenium` to send requests.This code has some perfect featur
 - Under any situation if code reruns it will remember the scraped pages and will continue scraping from the last page
 
 > NOTE: Since the dataset extracted from abadis dictionary is too large for our purpose, we will use smaller dataset.
+
 ## Levenshtein function
 
 The main levenshtein function is described completely in the class.
@@ -29,10 +30,10 @@ For instance to iterate a **4x5** matrix we have:<br>
 
 |0|1|2|3|4|5|
 |-|-|-|-|-|-|
-1
-2
-3
-4
+1|-1|-1|-1|-1|-1|-1
+2|-1|-1|-1|-1|-1|-1
+3|-1|-1|-1|-1|-1|-1
+4|-1|-1|-1|-1|-1|-1
 
 The new iteration contains two nested loops in the table below number of loops are separated using dash character:
 
@@ -108,20 +109,23 @@ your words seems to be wrong, did u mean: سپر or بر or سبک or سر or ج
 
 
 calculating the time for other algorithms:
-levenshtein calcilation time : 0.78s
-words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 250
+levenshtein calcilation time : 0.77s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب']
+   and number of words whith 2 distance: 250
 
-levenshtein_distanceLimiter calcilation time : 0.92s
-words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 250
+levenshtein_distanceLimiter calcilation time : 0.80s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب']
+   and number of words whith 2 distance: 250
 
-levenshtein_recursion calcilation time : 1.29s
-words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 250
+levenshtein_recursion calcilation time : 1.33s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب']
+   and number of words whith 2 distance: 250
 
-levenshtein_calculatingNecessaryCells calcilation time : 1.40s
-words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 250
+levenshtein_calculatingNecessaryCells calcilation time : 1.31s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب']
+   and number of words whith 2 distance: 250
 
-levenshtein_GreedyBFS calcilation time : 0.20s
-words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب'] and number of words whith 2 distance: 0
-
-
+levenshtein_GreedyBFS calcilation time : 0.21s
+words with one distance: ['سپر', 'بر', 'سبک', 'سر', 'جبر', 'سبق', 'سبب']
+   and number of words whith 2 distance: 0
 ```

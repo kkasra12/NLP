@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
+</head>
+<body>
+<h1 id="edit-distance">Edit Distance</h1>
+<p>to calculate edit distance we need a large dataset, contains correct tokens.Also implementation of levenshtein function to calculate the distance between the terms.</p>
+<h2 id="terms-dataset">Terms Dataset</h2>
+<h3 id="smaller-dataset">Smaller Dataset</h3>
+<p>There is a large enough collection of correct terms in this <a href="http://khodam.altervista.org/%D9%84%DB%8C%D8%B3%D8%AA-%D9%87%D9%85%D9%87-%DA%A9%D9%84%D9%85%D8%A7%D8%AA-%D9%81%D8%A7%D8%B1%D8%B3%DB%8C-%D9%85%D8%AC%D9%85%D9%88%D8%B9%D9%87-%DA%A9%D8%A7%D9%85%D9%84/">link</a> which is tokenized using my own <strong>tokenizer</strong> implemented in previous projects.<br> The output contains 21895 tokens which is stored in <code>pltk/WordProcesses/WordsDataset</code> (each tokens is separated using <em>newLine character</em>)</p>
+<h3 id="extra-large-dataset">Extra Large Dataset</h3>
+<p>(abadis dictionary)[https://dictionary.abadis.ir/fatofa/] has thousands of words which we can scrap them easily the code is implemented in <code>04-MakeADictionary/ScrapAbadisDictionary/runme.py</code>. this code is using <code>selenium</code> to send requests.This code has some perfect features such as: - because of rapid requests simultaneously the server will block the script's IP but the script will not terminate and will wait for the user to enter the capcha or change the IP address - Under any situation if code reruns it will remember the scraped pages and will continue scraping from the last page</p>
+<blockquote>
+<p>NOTE: Since the dataset extracted from abadis dictionary is too large for our purpose, we will use smaller dataset.</p>
+</blockquote>
+<h2 id="levenshtein-function">Levenshtein function</h2>
+<p>The main levenshtein function is described completely in the class. I made two more ideas hopefully to increase the algorithm's speed (which unfortunately was not successful!!!)</p>
+<h3 id="first-idea">First Idea</h3>
+<p>The first idea is to have a distance limiter.which terminates the process if the distance goes over 2. To achieve this goal we must change the order of iterations over the matrix cells. For instance to iterate a <strong>4x5</strong> matrix we have:<br> <strong>The initial matrix is:</strong></p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<p>The new iteration contains two nested loops in the table below number of loops are separated using dash character:</p>
+<table>
+<thead>
+<tr class="header">
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1-0</td>
+<td>1-1</td>
+<td>1-2</td>
+<td>1-3</td>
+<td>1-4</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2-0</td>
+<td>3-0</td>
+<td>3-1</td>
+<td>3-2</td>
+<td>3-3</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2-1</td>
+<td>4-0</td>
+<td>5-0</td>
+<td>5-1</td>
+<td>5-2</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2-2</td>
+<td>4-1</td>
+<td>6-0</td>
+<td>7-1</td>
+<td>7-2</td>
+</tr>
+</tbody>
+</table>
+<p>The inner loop will terminated whenever if calculated distance is bigger than 2. i.e. for two words of <code>abcdef</code> and <code>bdeg</code>we have:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>d</th>
+<th>e</th>
+<th>f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr class="odd">
+<td>d</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr class="even">
+<td>e</td>
+<td>3</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr class="odd">
+<td>g</td>
+<td>4</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>NOTE: all <code>T</code> marks are known as <code>distanceLimitValue +1</code>, which means the answer of this table is 3</p>
+</blockquote>
+<p>As you can see most of table is not calculated. but the extra calculation which this method affords to the algorithm to keep track of the order of cells to calculate is much more, which leads to slower algorithm(I will prove it practically)</p>
+<h2 id="second-idea">Second Idea</h2>
+<p>To describe second idea, we can recursively find the necessary cells and calculate only those values: As a solid example lets calculate the the edit distance between <code>abcdef</code> and <code>abbdwf</code>.The goal is to find the bottom left cell in the table(colored in green).since the last characters are equal there is no need to calculate the upper and left neighbour(colored in red) we should only calculate the diagonal cell.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>d</th>
+<th>e</th>
+<th>f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>a</td>
+<td>1</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>b</td>
+<td>2</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>3</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>d</td>
+<td>4</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>w</td>
+<td>5</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td style="background-color:#ff1f1f">X</td>
+</tr>
+<tr class="odd">
+<td>f</td>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="background-color:#ff1f1f">X</td>
+<td style="background-color:#0a0">O</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>as you can see approximately all of the cells are calculated</p>
+</blockquote>
+<h2 id="third-idea-greedy-method">Third Idea (greedy method)</h2>
+<p>In this method each cell represents a node in a tree structure and the answer is in the root, Also each edge has the cost of <u><b>1</b></u> or <u><b>0</b></u> also we use greedy approach to extend the nodes while the edges which has <strong>zero</strong> cost or has less numbers as coordinates are in high priority to choose and extend.<br></p>
+<p>i.e. for <code>abcdef</code> and <code>bcwgf</code></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">c</th>
+<th align="center">d</th>
+<th align="center">e</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="center">b</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">leve4</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">c</td>
+<td align="center">2</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">level3</td>
+<td align="center">level3</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">w</td>
+<td align="center">3</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">level3</td>
+<td align="center">level2</td>
+<td align="center">level2</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">g</td>
+<td align="center">4</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">level2</td>
+<td align="center">level1</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">f</td>
+<td align="center">5</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">root</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>value of <code>level4</code>=1 (bucause <code>b</code> is simillar)<br> value of <code>level3</code>=<code>level4</code>=1 (bucause <code>c</code> is simillar)<br> value of <code>level2</code>=<code>level3</code>+1=2 (bucause <code>w!=d</code>)<br> value of <code>level1</code>=<code>level2</code>+1=3 (bucause <code>e!=g</code>)<br> value of <code>root</code>=<code>level1</code>=3 (bucause <code>f</code> is simillar)<br></p>
+</blockquote>
+<blockquote>
+<p>NOTE: this algorithm is obviously acting greedy which may make mistakes some times, to avoid wrong answers from this algorithm the answers from this algorithm must validate by main <code>levenshtein</code> algorithm.</p>
+</blockquote>
+<h2 id="outputs-and-time-calculations">outputs and time calculations</h2>
+<p>simply run the <code>runme.py</code> code:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">python3</span> runme.py
+<span class="ex">21896</span> tokens loaded...
+<span class="ex">Please</span> write your word: سبر
+<span class="ex">your</span> words seems to be wrong, did u mean: سپر or بر or سبک or سر or جبر or سبق or سبب
+
+
+
+<span class="ex">calculating</span> the time for other algorithms:
+<span class="ex">levenshtein</span> calcilation time : 0.77s
+<span class="ex">words</span> with one distance: [<span class="st">&#39;سپر&#39;</span>, <span class="st">&#39;بر&#39;</span>, <span class="st">&#39;سبک&#39;</span>, <span class="st">&#39;سر&#39;</span>, <span class="st">&#39;جبر&#39;</span>, <span class="st">&#39;سبق&#39;</span>, <span class="st">&#39;سبب&#39;</span>]
+   <span class="ex">and</span> number of words whith 2 distance: 250
+
+<span class="ex">levenshtein_distanceLimiter</span> calcilation time : 0.80s
+<span class="ex">words</span> with one distance: [<span class="st">&#39;سپر&#39;</span>, <span class="st">&#39;بر&#39;</span>, <span class="st">&#39;سبک&#39;</span>, <span class="st">&#39;سر&#39;</span>, <span class="st">&#39;جبر&#39;</span>, <span class="st">&#39;سبق&#39;</span>, <span class="st">&#39;سبب&#39;</span>]
+   <span class="ex">and</span> number of words whith 2 distance: 250
+
+<span class="ex">levenshtein_recursion</span> calcilation time : 1.33s
+<span class="ex">words</span> with one distance: [<span class="st">&#39;سپر&#39;</span>, <span class="st">&#39;بر&#39;</span>, <span class="st">&#39;سبک&#39;</span>, <span class="st">&#39;سر&#39;</span>, <span class="st">&#39;جبر&#39;</span>, <span class="st">&#39;سبق&#39;</span>, <span class="st">&#39;سبب&#39;</span>]
+   <span class="ex">and</span> number of words whith 2 distance: 250
+
+<span class="ex">levenshtein_calculatingNecessaryCells</span> calcilation time : 1.31s
+<span class="ex">words</span> with one distance: [<span class="st">&#39;سپر&#39;</span>, <span class="st">&#39;بر&#39;</span>, <span class="st">&#39;سبک&#39;</span>, <span class="st">&#39;سر&#39;</span>, <span class="st">&#39;جبر&#39;</span>, <span class="st">&#39;سبق&#39;</span>, <span class="st">&#39;سبب&#39;</span>]
+   <span class="ex">and</span> number of words whith 2 distance: 250
+
+<span class="ex">levenshtein_GreedyBFS</span> calcilation time : 0.21s
+<span class="ex">words</span> with one distance: [<span class="st">&#39;سپر&#39;</span>, <span class="st">&#39;بر&#39;</span>, <span class="st">&#39;سبک&#39;</span>, <span class="st">&#39;سر&#39;</span>, <span class="st">&#39;جبر&#39;</span>, <span class="st">&#39;سبق&#39;</span>, <span class="st">&#39;سبب&#39;</span>]
+   <span class="ex">and</span> number of words whith 2 distance: 0</code></pre></div>
+</body>
+</html>

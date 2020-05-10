@@ -16,4 +16,4 @@ for func in [wp.levenshtein,
     startTime=time()
     t1=wp.suggestWord(myWord,editDistanceFunction=func)
     print(f"{func.__name__} calcilation time : {time()-startTime:.2f}s")
-    print(f"words with one distance: {t1[1]} and number of words whith 2 distance: {len(t1[2])}\n")
+    print(f"words with one distance: {t1[1]}\n   and number of words whith 2 distance: {len(t1[2])}\n")
