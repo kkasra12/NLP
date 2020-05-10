@@ -3,4 +3,5 @@ from .levenshtein import levenshtein,\
                         levenshtein_recursion,\
                         levenshtein_calculatingNecessaryCells,\
                         suggestWord,\
+                        levenshtein_GreedyBFS,\
                         Dictionary

@@ -122,23 +122,88 @@ def recursive_levenshtein(seq1,seq2,matrix,cell):
                 recursive_levenshtein(seq1,seq2,matrix,(x,y-1)))+1
     return matrix[cell]
 
+def levenshtein_GreedyBFS(seq1,seq2):
+    if seq2=="":
+        return len(seq1)
+    size_x=len(seq1)+1
+    size_y=len(seq2)+1
+    treeChilds={} # { <childCell> : (<fatherCell>,<cost: 0 or 1>) }
+    currentCell=(size_x-1,size_y-1)
+    if seq1[currentCell[0]-1]==seq2[currentCell[1]-1]:
+        zeroCostQueue=[currentCell]
+        oneCostQueue=[]
+    else:
+        zeroCostQueue=[]
+        oneCostQueue=[currentCell]
+    while 1:
+        if len(zeroCostQueue)!=0:
+            zeroCostQueue.sort()
+            currentCell=zeroCostQueue.pop(0)
+            if currentCell[0]==0:
+                valueOfCurrentCell=currentCell[1]
+                break
+            if currentCell[1]==0:
+                valueOfCurrentCell=currentCell[0]
+                break
+            newCell=(currentCell[0]-1,currentCell[1]-1) # generate childCell
+            if newCell in treeChilds: # avoid redundancy
+                continue
+            treeChilds.update({newCell:(currentCell,0)}) # update tree
+            if seq1[newCell[0]-1]==seq2[newCell[1]-1]: # add new cells to queue
+                zeroCostQueue.append(newCell)
+            else:
+                oneCostQueue.append(newCell)
+        elif len(oneCostQueue)!=0:
+            oneCostQueue.sort()
+            currentCell=oneCostQueue.pop(0)
+            if currentCell[0]==0:
+                valueOfCurrentCell=currentCell[1]
+                break
+            if currentCell[1]==0:
+                valueOfCurrentCell=currentCell[0]
+                break
+            newCells=[(currentCell[0]-1,currentCell[1]),
+                      (currentCell[0],currentCell[1]-1),
+                      (currentCell[0]-1,currentCell[1]-1)]
+            for newCell in newCells:
+                if newCell in treeChilds: # avoid redundancy
+                    continue
+                treeChilds.update({newCell:(currentCell,1)}) # update tree
+                if seq1[newCell[0]-1]==seq2[newCell[1]-1]:
+                    zeroCostQueue.append(newCell)
+                else:
+                    oneCostQueue.append(newCell)
+        else:
+            raise Exception("unreachable state :(")
+    while currentCell!=(size_x-1,size_y-1):
+        valueOfCurrentCell+=treeChilds[currentCell][1]
+        currentCell=treeChilds[currentCell][0]
+    return int(valueOfCurrentCell)
+
+
 def suggestWord(word,Dictionary=Dictionary,editDistanceFunction=levenshtein,maxDis=2):
     response=[[] for _ in range(maxDis+1)]
-    print("someone called me ",len(Dictionary))
     for w in Dictionary:
         editDistance=editDistanceFunction(word,w)
         if editDistance<=maxDis:
             response[editDistance].append(w)
+    if editDistanceFunction.__name__=="levenshtein_GreedyBFS":
+        return suggestWord(word,Dictionary=response[0]+response[1],maxDis=maxDis)
     return response
 
 if __name__ == '__main__':
-    # print(levenshtein("kasra","kosi"))
+    # print(levenshtein_GreedyBFS("کسری","مقتولین"))
     testCases=["kasra","kasia","parvin"]
     print("\t"+"\t".join(testCases))
     for i in testCases:
         print(i,end="\t")
         print("\t".join(f"{levenshtein(i,j)}" for j in testCases))
-    for func in [levenshtein,levenshtein_distanceLimiter,levenshtein_recursion,levenshtein_calculatingNecessaryCells]:
+    algorithms=[levenshtein_GreedyBFS,
+                levenshtein,
+                levenshtein_distanceLimiter,
+                levenshtein_recursion,
+                levenshtein_calculatingNecessaryCells,]
+    for func in algorithms:
         startTime=time()
         t1=suggestWord("کسری",editDistanceFunction=func)
         print(f"{func.__name__} :{time()-startTime:.2f}")

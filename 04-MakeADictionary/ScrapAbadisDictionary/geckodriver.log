@@ -282,3 +282,6 @@ console.error: BroadcastService:
 JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
 JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
 1588900303297	Marionette	INFO	Stopped listening on port 39769
+[Child 22062, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+[Child 24409, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+[Child 25435, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
