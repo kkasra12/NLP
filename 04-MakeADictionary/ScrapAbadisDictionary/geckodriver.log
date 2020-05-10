@@ -1,0 +1,284 @@
+1588842023805	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilebzj2EO"
+1588842024930	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588842024930	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588842029157	Marionette	INFO	Listening on port 35895
+1588842029218	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+1588842063483	Marionette	INFO	Stopped listening on port 35895
+1588862359215	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileST3zxn"
+1588862361545	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588862361545	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588862366642	Marionette	INFO	Listening on port 46595
+1588862366656	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588863415036	Marionette	INFO	Stopped listening on port 46595
+1588864008345	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1tJDpa"
+1588864008827	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588864008827	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588864024002	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilenx3Vcu"
+1588864024459	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588864024459	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588864028114	Marionette	INFO	Listening on port 42873
+1588864028130	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+1588864050865	Marionette	INFO	Stopped listening on port 42873
+[Parent 27138, Gecko_IOThread] WARNING: pipe error (92): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+[Parent 27138, Gecko_IOThread] WARNING: pipe error (78): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588896423538	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileLQ7WD5"
+1588896431313	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588896431313	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588896440488	Marionette	INFO	Listening on port 46729
+1588896440534	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+1588896448945	Marionette	INFO	Stopped listening on port 46729
+[Parent 20762, Gecko_IOThread] WARNING: pipe error (74): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588896477349	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileTZwIoo"
+*** You are running in headless mode.
+1588896477842	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588896477842	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588896481760	Marionette	INFO	Listening on port 38593
+1588896481862	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+1588896488298	Marionette	INFO	Stopped listening on port 38593
+[Parent 21147, Gecko_IOThread] WARNING: pipe error (63): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+[Parent 21147, Gecko_IOThread] WARNING: pipe error (87): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588896569622	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileyquVos"
+*** You are running in headless mode.
+1588896570095	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588896570095	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588896574205	Marionette	INFO	Listening on port 37507
+1588896574262	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588896602194	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileIoCmhh"
+*** You are running in headless mode.
+1588896602688	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588896602688	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588896606970	Marionette	INFO	Listening on port 42835
+1588896607016	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588896691416	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1oFn6j"
+*** You are running in headless mode.
+1588896691926	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588896691926	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588896695558	Marionette	INFO	Listening on port 37673
+1588896695642	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588896806878	Marionette	INFO	Stopped listening on port 37673
+[Parent 22342, Gecko_IOThread] WARNING: pipe error (63): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588897669244	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile2kPttB"
+*** You are running in headless mode.
+1588897669861	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588897669861	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588897673649	Marionette	INFO	Listening on port 43065
+1588897673680	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588897743278	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilelPyxu6"
+*** You are running in headless mode.
+1588897744282	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588897744284	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588897749118	Marionette	INFO	Listening on port 35891
+1588897749214	Marionette	WARN	TLS certificate errors will be ignored for this session
+1588897754865	Marionette	INFO	Stopped listening on port 35891
+[Parent 24638, Gecko_IOThread] WARNING: pipe error (63): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+[Parent 24638, Gecko_IOThread] WARNING: pipe error (64): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+JavaScript error: resource://services-common/kinto-offline-client.js, line 565: Error: getLastModified() A request was aborted, for example through a call to IDBTransaction.abort.
+1588897789049	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileUYIc1e"
+*** You are running in headless mode.
+1588897789560	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588897789561	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588897793212	Marionette	INFO	Listening on port 34903
+1588897793277	Marionette	WARN	TLS certificate errors will be ignored for this session
+1588897798362	Marionette	INFO	Stopped listening on port 34903
+1588897858028	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilerJfAfR"
+*** You are running in headless mode.
+1588897858848	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588897858848	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588897862769	Marionette	INFO	Listening on port 34007
+1588897862851	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588897908363	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6rsYjf"
+*** You are running in headless mode.
+1588897909039	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588897909040	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588897913139	Marionette	INFO	Listening on port 43465
+1588897913215	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588897972220	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileaF1vHv"
+*** You are running in headless mode.
+1588897972830	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588897972830	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588897977004	Marionette	INFO	Listening on port 45895
+1588897977061	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+1588897987169	Marionette	INFO	Stopped listening on port 45895
+[Parent 26013, Gecko_IOThread] WARNING: pipe error (63): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588898053838	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6gqmuy"
+*** You are running in headless mode.
+1588898054453	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588898054453	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588898059017	Marionette	INFO	Listening on port 45465
+1588898059071	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1588898944337	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGLZkvU"
+*** You are running in headless mode.
+1588898945818	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588898945818	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588898949849	Marionette	INFO	Listening on port 35269
+1588898949863	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588899024457	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileCN3XEp"
+*** You are running in headless mode.
+1588899025143	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588899025143	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588899028869	Marionette	INFO	Listening on port 46801
+1588899028907	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1588899067743	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileJ3Ywml"
+1588899068587	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588899068587	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588899074389	Marionette	INFO	Listening on port 40867
+1588899074475	Marionette	WARN	TLS certificate errors will be ignored for this session
+[Parent 30428, Gecko_IOThread] WARNING: pipe error (103): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588899094627	Marionette	INFO	Stopped listening on port 40867
+1588899111469	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilehlmkYO"
+1588899112100	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588899112100	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588899115372	Marionette	INFO	Listening on port 37955
+1588899115411	Marionette	WARN	TLS certificate errors will be ignored for this session
+1588899182564	Marionette	INFO	Stopped listening on port 37955
+1588899312258	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileyVH40y"
+1588899312946	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588899312946	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588899316415	Marionette	INFO	Listening on port 45099
+1588899316476	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+JavaScript error: jar:file:///usr/lib/firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 597: TypeError: this.tablesData[table] is undefined
+[Parent 31574, Gecko_IOThread] WARNING: pipe error (92): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588899327596	Marionette	INFO	Stopped listening on port 45099
+1588899426119	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileYUXMbU"
+1588899427488	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588899427488	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588899431267	Marionette	INFO	Listening on port 40429
+1588899431338	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+[Parent 32220, Gecko_IOThread] WARNING: pipe error (94): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588899530963	Marionette	INFO	Stopped listening on port 40429
+1588899677115	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileIFZzvU"
+1588899677927	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588899677927	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588899681318	Marionette	INFO	Listening on port 40431
+1588899681328	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+1588899805089	Marionette	INFO	Stopped listening on port 40431
+[Parent 511, Gecko_IOThread] WARNING: pipe error (75): Connection reset by peer: file /build/firefox-fvtOIe/firefox-64.0+linuxmint2+tessa/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 363
+1588900048829	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1pXbVA"
+1588900049327	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1588900049327	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1588900052659	Marionette	INFO	Listening on port 39769
+1588900052756	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+JavaScript error: https://dictionary.abadis.ir/JScript/Base.js?5100, line 1: TypeError: $$(...) is null
+1588900303297	Marionette	INFO	Stopped listening on port 39769
