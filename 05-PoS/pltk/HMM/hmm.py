@@ -20,22 +20,42 @@ class HMM:
         # S2 0
         # S3 0
         # indexs are states
-    def train(self,doc):
-        trainData=self.preprocess(doc)
-        print(f"the train process started for {len(trainData)} size document")
+    def train(self,doc,verbos=True):
+        if type(doc)==str:
+            trainData=self.preprocess(doc)
+        elif type(doc)==list:
+            trainData=doc
+        else:
+            raise ValueError("doc must be str or list")
+        if verbos:
+            print(f"the train process started for {len(trainData)} size document")
         previuosState=self.STARTSTATE
-        for tok,state in tqdm(trainData):
-            if state not in self.stateTransision:
-                self.stateTransision.loc[state,state]=0
-                self.stateTransision.fillna(0,inplace=True)
-                self.tokenProbability.loc[state,'']=0
-                self.tokenProbability.fillna(0,inplace=True)
-            if tok not in self.tokenProbability:
-                self.tokenProbability.loc['$',tok]=0
-                self.tokenProbability.fillna(0,inplace=True)
-            self.stateTransision.loc[previuosState,state]+=1
-            self.tokenProbability.loc[state,tok]+=1
-            previuosState=state
+        if verbos:
+            for tok,state in tqdm(trainData):
+                if state not in self.stateTransision:
+                    self.stateTransision.loc[state,state]=0
+                    self.stateTransision.fillna(0,inplace=True)
+                    self.tokenProbability.loc[state,'']=0
+                    self.tokenProbability.fillna(0,inplace=True)
+                if tok not in self.tokenProbability:
+                    self.tokenProbability.loc['$',tok]=0
+                    self.tokenProbability.fillna(0,inplace=True)
+                self.stateTransision.loc[previuosState,state]+=1
+                self.tokenProbability.loc[state,tok]+=1
+                previuosState=state
+        else:
+            for tok,state in trainData:
+                if state not in self.stateTransision:
+                    self.stateTransision.loc[state,state]=0
+                    self.stateTransision.fillna(0,inplace=True)
+                    self.tokenProbability.loc[state,'']=0
+                    self.tokenProbability.fillna(0,inplace=True)
+                if tok not in self.tokenProbability:
+                    self.tokenProbability.loc['$',tok]=0
+                    self.tokenProbability.fillna(0,inplace=True)
+                self.stateTransision.loc[previuosState,state]+=1
+                self.tokenProbability.loc[state,tok]+=1
+                previuosState=state
 
         stateRepitition=np.log(self.tokenProbability.sum(axis=1)\
                                                     .to_numpy()\
@@ -70,7 +90,7 @@ class HMM:
         # tokens=['']+tokens
         allStates=self.tokenProbability.index
         tokens=[Normalize(tok) for tok in tokens]
-        assert (allStates==self.stateTransision.columns).all()
+        # assert (allStates==self.stateTransision.columns).all()
         predictions=pd.DataFrame(np.zeros((len(self.stateTransision),len(tokens))),
                                  columns=tokens,
                                  index=allStates)-np.inf
@@ -79,17 +99,24 @@ class HMM:
         # S1 -inf -inf -inf
         # S2 -inf -inf -inf
         # S3 -inf -inf -inf
-        for tok in tokens:
+        for tokIndex,tok in enumerate(tokens):
             for state in allStates:
                 try:
-                    predictions[tok]=np.maximum(predictions[tok],
+                    predictions[tok]=np.maximum(predictions.iloc[:,tokIndex],
                                                 self.stateTransision.loc[state].to_numpy()+\
                                                 self.tokenProbability.get(tok).to_numpy())
-                except Exception as e:
-                    print(tok)
-                    break
+                except AttributeError:
+                    predictions[tok]=np.maximum(predictions.iloc[:,tokIndex],
+                                                self.stateTransision.loc[state].to_numpy())
+                except:
+                    print(self.stateTransision.loc[state].to_numpy()+\
+                    self.tokenProbability.get(tok).to_numpy())
 
-        return [allStates[np.argmax(predictions[tok])] for tok in tokens]
+                    print(predictions[tok])
+                    input()
+        return list(zip(tokens,
+                        [allStates[np.argmax(predictions.iloc[:,tokIndex])] \
+                        for tokIndex in range(len(tokens))]))
 
     def saveModel(self,
                   stateTransisionFilename='stateTransision.csv',
@@ -105,3 +132,14 @@ class HMM:
         tokenProbabilityColumns=list(self.tokenProbability.columns)
         tokenProbabilityColumns[0]=''
         self.tokenProbability.columns=tokenProbabilityColumns
+
+    def test(self,testData):
+        numberOfCorrectPredictions=0
+        numberOfAllCases=0
+        for sent in tqdm(testData):
+            taggedSentence=self.findBestStates([i[0] for i in sent])
+            numberOfCorrectPredictions+=sum(1 for i,j in\
+                                                  zip(taggedSentence,sent)\
+                                            if i[1]==j[1])
+            numberOfAllCases+=len(taggedSentence)
+        return numberOfCorrectPredictions*100/numberOfAllCases
