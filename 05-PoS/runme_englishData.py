@@ -19,15 +19,14 @@ except LookupError:
 train_data=all_data[:int(len(all_data)*TRAIN_DATA_SIZE)]
 test_data=all_data[int(len(all_data)*TRAIN_DATA_SIZE):]
 
-# print("using nltk.tag.hmm.HiddenMarkovModelTrainer\n")
-# trainer = hmm.HiddenMarkovModelTrainer()
-# tagger = trainer.train_supervised(train_data)
-#
-# print(tagger.tag("Today is a good day .".split()))
-# print(tagger.tag("Joe met Joanne in Delhi .".split()))
-# print(tagger.tag("Chicago is the birthplace of Ginny".split()))
-#
-# tagger.test(test_data)
+print("using nltk.tag.hmm.HiddenMarkovModelTagger\n")
+tagger = hmm.HiddenMarkovModelTagger.train(train_data)
+
+print(tagger.tag("Today is a good day .".split()))
+print(tagger.tag("Joe met Joanne in Delhi .".split()))
+print(tagger.tag("Chicago is the birthplace of Ginny".split()))
+
+tagger.test(test_data)
 
 print("using pltk.HMM.HMM (implemented by myself)")
 myHmm=HMM()
@@ -35,8 +34,8 @@ myHmm=HMM()
 # myHmm.saveModel()
 
 myHmm.loadModel()
-# print(myHmm.findBestStates("Today is a good day .".split()))
-# print(myHmm.findBestStates("Joe met Joanne in Delhi .".split()))
-# print(myHmm.findBestStates("Chicago is the birthplace of Ginny".split()))
+print(myHmm.findBestStates("Today is a good day .".split()))
+print(myHmm.findBestStates("Joe met Joanne in Delhi .".split()))
+print(myHmm.findBestStates("Chicago is the birthplace of Ginny".split()))
 
 print(myHmm.test(test_data))
