@@ -1,4 +1,4 @@
 numpy==1.13.3
 tqdm==4.41.1
 pandas==1.0.0
-nltk==3.4.5
+nltk
